@@ -19,7 +19,21 @@ const createTask = asyncHandler(async(req, res) => {
   }
 })
 
+const updateTask = asyncHandler(async(req, res) => {
+  const task = await Task.findById(req.params.id)
+
+  if (!task) {
+    res.status(404)
+    throw new Error('Task not found')
+  }
+
+  const updatedTask = await Task.findByIdAndUpdate(req.params.id, req.body, {new: true})
+
+  res.status(200).json(updatedTask)
+})
+
 module.exports = {
   getTasks,
   createTask,
+  updateTask,
 }
