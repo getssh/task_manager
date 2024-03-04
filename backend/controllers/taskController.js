@@ -32,8 +32,22 @@ const updateTask = asyncHandler(async(req, res) => {
   res.status(200).json(updatedTask)
 })
 
+const deleteTask = asyncHandler(async(req, res) => {
+  const task = await Task.findById(req.params.id)
+
+  if (!task) {
+    res.status(400)
+    throw new Error('Task not found')
+  }
+
+  await Task.deleteOne(task)
+
+  res.status(200).json({id: task._id})
+})
+
 module.exports = {
   getTasks,
   createTask,
   updateTask,
+  deleteTask,
 }
