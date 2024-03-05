@@ -68,6 +68,17 @@ const signIn = asyncHandler(async(req, res) => {
   }
 })
 
+const deleteUser = asyncHandler(async(req, res) => {
+  if (!req.user) {
+    res.status(400)
+    throw new Error('User not found')
+  }
+
+  await User.deleteOne(req.user)
+  res.status(200)
+  res.json(req.user.id)
+})
+
 const generateToken = (id) => {
   return jwt.sign({id}, process.env.JWT_SECRET, {
     expiresIn: '7d'
@@ -78,4 +89,5 @@ module.exports = {
   getUser,
   registerUser,
   signIn,
+  deleteUser,
 }
