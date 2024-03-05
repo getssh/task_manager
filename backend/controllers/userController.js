@@ -44,7 +44,29 @@ const registerUser = asyncHandler(async(req, res) => {
     res.status(400)
     throw new Erorr('Invalid user data')
   }
-})  
+})
+
+const signIn = asyncHandler(async(req, res) => {
+  const {email, password} = req.body
+
+  if (!email || !password) {
+    res.status(400)
+    throw new Error('Please fill all required reilds')
+  }
+
+  const user = await User.findOne({email})
+  if (user && (await bcrypt.compare(password, user.password))) {
+    res.status(200).json({
+      id: user.id,
+      name: user.name,
+      email: user.email,
+      token: generateToken(user.id)
+    })
+  } else {
+    res.status(401)
+    throw new Error('Invalid credentials')
+  }
+})
 
 const generateToken = (id) => {
   return jwt.sign({id}, process.env.JWT_SECRET, {
@@ -55,4 +77,5 @@ const generateToken = (id) => {
 module.exports = {
   getUser,
   registerUser,
+  signIn,
 }
