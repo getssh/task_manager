@@ -15,7 +15,7 @@ const createTask = asyncHandler(async(req, res) => {
     res.status(400)
     throw new Error('Please fill all required fields')
   } else {
-    const task = await Task.create({user:req.user, taskItem, priority, taskCompleted})
+    const task = await Task.create({user:req.user.id, taskItem, priority, taskCompleted})
     res.status(200).json(task)
   }
 })
@@ -26,6 +26,11 @@ const updateTask = asyncHandler(async(req, res) => {
   if (!task) {
     res.status(404)
     throw new Error('Task not found')
+  }
+
+  if (!req.user) {
+    res.status(401)
+    throw new Error('User not found')
   }
 
   if (task.user.toString() !== req.user.id) {
@@ -44,6 +49,16 @@ const deleteTask = asyncHandler(async(req, res) => {
   if (!task) {
     res.status(400)
     throw new Error('Task not found')
+  }
+
+  if (!req.user) {
+    res.status(401)
+    throw new Error('User not found')
+  }
+
+  if (task.user.toString() !== req.user.id) {
+    res.status(401)
+    throw new Error('Not authoraized')
   }
 
   await Task.deleteOne(task)
