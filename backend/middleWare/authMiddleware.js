@@ -8,15 +8,17 @@ const protect = asyncHandler(async(req, res, next) => {
     try {
       token = req.headers.Authorization.split(' ')[1]
 
-      const decode = jwt.verify(token, process.env.JWT_SECRET)
-      res.user = await User.findById(decode.id).select('-password')
+      const decoded = jwt.verify(token, process.env.JWT_SECRET)
+      res.user = await User.findById(decoded.id).select('-password')
       next()
     } catch (error) {
       console.log(error)
       res.status(401)
       throw new Error('Not Authorized to access this resource')
     }
-  } else {
+  }
+  
+  if (!token) {
     res.status(401)
     throw new Error('Not Authorized, Token not found')
   }
