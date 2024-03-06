@@ -1,5 +1,6 @@
 const asyncHandler = require('express-async-handler')
 const User = require('../models/userModel')
+const Task = require('../models/taskModel')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
 
@@ -74,6 +75,7 @@ const deleteUser = asyncHandler(async(req, res) => {
     throw new Error('User not found')
   }
 
+  await Task.deleteMany({user: req.user.id})
   await User.deleteOne(req.user)
   res.status(200)
   res.json(req.user.id)
