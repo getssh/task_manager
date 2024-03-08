@@ -1,5 +1,5 @@
 import { AppBar, Badge, Box, Button, IconButton, Toolbar, Typography } from '@mui/material'
-import {AccountCircle, AddTask, Favorite, Mail, Menu, More, Notifications, Person, Search, TaskAlt} from '@mui/icons-material'
+import {Menu, TaskAlt} from '@mui/icons-material'
 import React from 'react'
 import { Link } from 'react-router-dom'
 
