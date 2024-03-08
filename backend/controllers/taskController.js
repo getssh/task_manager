@@ -19,7 +19,7 @@ const createTask = asyncHandler(async(req, res) => {
     throw new Error('Please fill all required fields')
   } else {
     const task = await Task.create({user:req.user.id, taskItem, priority, taskCompleted})
-    res.status(200).json(task)
+    res.status(201).json(task)
   }
 })
 
