@@ -1,9 +1,11 @@
-
+import {useSelector } from "react-redux/es/hooks/useSelector";
 
 function App() {
+  const {tasks} = useSelector((state)=>state.tasks)
+
   return (
     <>
-      <p>hello</p>
+      <p>{tasks[0]}</p>
     </>
   );
 }
