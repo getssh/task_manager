@@ -1,5 +1,5 @@
 import {useSelector } from "react-redux/es/hooks/useSelector";
-import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
+import {BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import {Box} from '@mui/material'
 import Navbar from './components/Navbar'
 import Home from "./pages/Home";
@@ -12,8 +12,8 @@ function App() {
 
   return (
     <Box>
-      <Navbar />
         <Router>
+        <Navbar />
           <Routes>
             <Route path="/" element={<Home />}/>
             <Route path="/tasks" element={<Tasks />}/>
