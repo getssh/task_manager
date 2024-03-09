@@ -1,12 +1,12 @@
 import { Box } from '@mui/material'
-import React from 'react'
+import AllTasks from '../components/AllTasks'
 
-const tasks = () => {
+const Tasks = () => {
   return (
     <Box>
-      Tasks
+      <AllTasks />
     </Box>
   )
 }
 
-export default tasks
+export default Tasks
