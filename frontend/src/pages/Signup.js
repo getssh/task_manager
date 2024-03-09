@@ -28,7 +28,6 @@ const Signup = () => {
         }} p={5}>
           <FormControl variant="standard">
             <Input
-              id="input-with-icon-adornment"
               type='text'
               placeholder='Name'
               startAdornment={
@@ -40,7 +39,6 @@ const Signup = () => {
           </FormControl>
           <FormControl variant="standard">
             <Input
-              id="input-with-icon-adornment"
               type='email'
               placeholder='Email Address'
               startAdornment={
@@ -52,7 +50,6 @@ const Signup = () => {
           </FormControl>
           <FormControl variant="standard">
             <Input
-              id="input-with-icon-adornment"
               type={user.showPassword ? 'text' : 'password'}
               placeholder='Password'
               startAdornment={
@@ -75,7 +72,6 @@ const Signup = () => {
           </FormControl>
           <FormControl variant="standard">
             <Input
-              id="input-with-icon-adornment"
               type={user.showPassword ? 'text' : 'password'}
               placeholder='Password'
               startAdornment={

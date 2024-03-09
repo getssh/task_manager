@@ -8,6 +8,7 @@ import Profile from './pages/Profile'
 import Tasks from './pages/Tasks'
 import Signin from "./pages/Signin";
 import Signup from "./pages/Signup";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   const {tasks} = useSelector((state)=>state.tasks)
@@ -25,6 +26,7 @@ function App() {
             <Route path="/Signup" element={<Signup />}/>
         </Routes>
       </Router>
+      <ToastContainer />
     </Box>
   );
 }

@@ -1,9 +1,11 @@
 import styled from '@emotion/styled'
 import { EmailRounded, Key, Visibility, VisibilityOff } from '@mui/icons-material'
 import { Box, Button, FormControl, IconButton, Input, InputAdornment, Typography } from '@mui/material'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import {toast} from 'react-toastify'
+import {reset, signinUser} from '../features/users/userSlice'
 
 const FormBox = styled(Box)({
   display: "flex",
@@ -22,10 +24,25 @@ const Signin = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
+  const {email, password} = userData
   const {user, isLoading, isError, isSuccess, message} = useSelector((state)=> state.user)
+
+  useEffect(() => {
+    if (isError) {
+      toast.error(message)
+    }
+
+    if (isSuccess || user) {
+      navigate('/')
+    }
+
+    dispatch(reset())
+  }, [isError, isSuccess, message, dispatch, user, navigate])
 
   const handleSubmit = (e) => {
     e.preventDefault()
+    const userInfo = {email, password}
+    dispatch(signinUser(userInfo))
     console.log(userData)
   }
 
@@ -55,7 +72,7 @@ const Signin = () => {
               type='email'
               placeholder='Email Address'
               name='email'
-              value={userData.email}
+              value={email}
               onChange={handleChange}
               startAdornment={
                 <InputAdornment position="start">
@@ -69,7 +86,7 @@ const Signin = () => {
               type={userData.showPassword ? 'text' : 'password'}
               placeholder='Password'
               name='password'
-              value={userData.password}
+              value={password}
               onChange={handleChange}
               startAdornment={
                 <InputAdornment position="start">

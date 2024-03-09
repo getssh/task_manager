@@ -11,21 +11,21 @@ const initialState = {
   message: "",
 }
 
-export const registerUser = createAsyncThunk('/register', async(userData, thunkAPI) => {
+export const registerUser = createAsyncThunk('user/register', async(userData, thunkAPI) => {
   try {
     return await userHelper.registerUser(userData)
   } catch (error) {
     console.log(error)
-    thunkAPI.rejectWithValue(error)
+    return thunkAPI.rejectWithValue(error.toString())
   }
 })
 
-export const signinUser = createAsyncThunk('/signin', async(userData, thunkAPI) => {
+export const signinUser = createAsyncThunk('user/signin', async(userData, thunkAPI) => {
   try {
     return await userHelper.signinUser(userData)
   } catch (error) {
     console.log(error)
-    thunkAPI.rejectWithValue(error)
+    return thunkAPI.rejectWithValue(error.toString())
   }
 })
 
