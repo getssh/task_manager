@@ -15,6 +15,7 @@ const Signup = () => {
     name: "",
     email: "",
     password: "",
+    confirmPassword: "",
     showPassword: false,
   })
   return (
@@ -53,7 +54,30 @@ const Signup = () => {
             <Input
               id="input-with-icon-adornment"
               type={user.showPassword ? 'text' : 'password'}
-              placeholder='Email Address'
+              placeholder='Password'
+              startAdornment={
+                <InputAdornment position="start">
+                  <Key />
+                </InputAdornment>
+              }
+              endAdornment={
+                <InputAdornment position="start">
+                  <IconButton
+                  aria-label="toggle password visibility"
+                  onClick={()=>setUser({...user, showPassword: !user.showPassword})}
+                  edge="end"
+                  >
+                  {user.showPassword ? <VisibilityOff /> : <Visibility />}
+                </IconButton>
+                </InputAdornment>
+              }
+            />
+          </FormControl>
+          <FormControl variant="standard">
+            <Input
+              id="input-with-icon-adornment"
+              type={user.showPassword ? 'text' : 'password'}
+              placeholder='Password'
               startAdornment={
                 <InputAdornment position="start">
                   <Key />
