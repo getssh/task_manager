@@ -1,4 +1,4 @@
-import { AppBar, Badge, Box, Button, IconButton, Toolbar, Typography } from '@mui/material'
+import { AppBar, Avatar, Badge, Box, Button, IconButton, Toolbar, Typography } from '@mui/material'
 import {Menu, TaskAlt} from '@mui/icons-material'
 import React from 'react'
 import { Link } from 'react-router-dom'
@@ -33,9 +33,17 @@ const Navbar = () => {
             <Button component={Link} to="/liked" color="inherit">
               Favoriate
             </Button>
-            <Button component={Link} to="/profile" color="inherit">
-              Profile
+            <Button component={Link} to="/signin" color="inherit">
+              Signin
             </Button>
+            <Button component={Link} to="/signup" color="inherit">
+              Signup
+            </Button>
+            <Avatar
+              component={Link}
+              to="/profile"
+              src="/broken-image.jpg"
+            />
           </Box>
           <Menu sx={{display: {xs: "block", sm:"none"}}}/>
         </Toolbar>

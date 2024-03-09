@@ -6,6 +6,8 @@ import Home from "./pages/Home";
 import Favorite from './pages/Favorite'
 import Profile from './pages/Profile'
 import Tasks from './pages/Tasks'
+import Signin from "./pages/Signin";
+import Signup from "./pages/Signup";
 
 function App() {
   const {tasks} = useSelector((state)=>state.tasks)
@@ -19,6 +21,8 @@ function App() {
             <Route path="/tasks" element={<Tasks />}/>
             <Route path="/liked" element={<Favorite />}/>
             <Route path="/profile" element={<Profile />}/>
+            <Route path="/Signin" element={<Signin />}/>
+            <Route path="/Signup" element={<Signup />}/>
         </Routes>
       </Router>
     </Box>
