@@ -40,7 +40,6 @@ const taskSlice = createSlice({
       .addCase(getTasks.rejected, (state, action) => {
         state.isLoading = false
         state.isError = true
-        state.tasks = []
         state.message = action.payload
       })
   }
