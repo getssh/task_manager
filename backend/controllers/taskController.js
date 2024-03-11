@@ -12,13 +12,13 @@ const getTasks = asyncHandler(async(req, res) => {
 })
 
 const createTask = asyncHandler(async(req, res) => {
-  const {taskItem, priority, taskCompleted} = req.body
+  const {taskItem, priority, taskCompleted, favorite} = req.body
 
   if (!taskItem || !priority) {
     res.status(400)
     throw new Error('Please fill all required fields')
   } else {
-    const task = await Task.create({user:req.user.id, taskItem, priority, taskCompleted})
+    const task = await Task.create({user:req.user.id, taskItem, priority, taskCompleted, favorite})
     res.status(201).json(task)
   }
 })

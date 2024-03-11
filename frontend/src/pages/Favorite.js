@@ -7,10 +7,13 @@ import { reset } from '../features/users/userSlice'
 const Favorite = () => {
   const dispatch = useDispatch()
 
-  useEffect(()=> {
-    dispatch(favTasks())
-
+  useEffect(() => {
+    dispatch(getTasks())
+      .then(() => {
+        dispatch(favTasks())
+      })
   }, [dispatch])
+
   const {tasks} = useSelector((state)=>state.tasks)
 
 
