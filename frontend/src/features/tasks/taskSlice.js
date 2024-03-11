@@ -25,6 +25,11 @@ const taskSlice = createSlice({
   reducers: {
     reset: (state) => {
       state = initialState
+    },
+    favTasks: (state) => {
+      state.tasks = state.tasks.filter((task)=>{
+        return task.favorite === true
+      })
     }
   },
   extraReducers: (builder) => {
@@ -45,5 +50,5 @@ const taskSlice = createSlice({
   }
 })
 
-export const {reset} = taskSlice.actions
+export const {reset, favTasks} = taskSlice.actions
 export default taskSlice.reducer
