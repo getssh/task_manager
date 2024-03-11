@@ -20,9 +20,14 @@ const signinUser = async(userData) => {
   return response.data
 }
 
+const logout = () => {
+  localStorage.removeItem('user');
+}
+
 const userHelper = {
   registerUser,
   signinUser,
+  logout,
 }
 
 export default userHelper
