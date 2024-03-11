@@ -11,6 +11,11 @@ const Navbar = () => {
 
   const {user} = useSelector((state)=>state.user)
 
+  const handleSignout = () => {
+    dispatch(logout())
+    navigate('/signin')
+  }
+
   return (
     <Box>
       <AppBar position="static" sx={{bgcolor: "darkcyan"}}>
@@ -46,7 +51,7 @@ const Navbar = () => {
               </Button>
 
               <Button color="inherit"
-                onClick={()=> dispatch(logout())}
+                onClick={handleSignout}
               >
                 Sign out
               </Button>
