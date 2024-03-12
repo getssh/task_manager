@@ -19,6 +19,15 @@ export const getTasks = createAsyncThunk('tasks/get', (_, thunkAPI) => {
   }
 })
 
+export const addTask = createAsyncThunk('tasks/create', async(taskData, thunkAPI) => {
+  try {
+    const token = thunkAPI.getState().user.user.token
+    return await taskHelper.addTask(taskData, token)
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.toString())
+  }
+})
+
 const taskSlice = createSlice({
   name: "tasks",
   initialState,
@@ -43,6 +52,19 @@ const taskSlice = createSlice({
         state.tasks = action.payload
       })
       .addCase(getTasks.rejected, (state, action) => {
+        state.isLoading = false
+        state.isError = true
+        state.message = action.payload
+      })
+      .addCase(addTask.pending, (state) => {
+        state.isLoading = true
+      })
+      .addCase(addTask.fulfilled, (state, action) => {
+        state.isLoading = false
+        state.isSuccess = true
+        state.tasks = action.payload
+      })
+      .addCase(addTask.rejected, (state, action) => {
         state.isLoading = false
         state.isError = true
         state.message = action.payload

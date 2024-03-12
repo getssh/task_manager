@@ -12,8 +12,21 @@ const getTasks = async(token) => {
   return response.data
 }
 
+const addTask = async(taskData, token) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  }
+
+  const response = await axios.post(API_URL, taskData, config)
+
+  return response.data
+}
+
 const taskHelper = {
   getTasks,
+  addTask,
 }
 
 export default taskHelper
