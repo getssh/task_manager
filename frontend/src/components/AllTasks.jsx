@@ -1,11 +1,11 @@
-import { Box, Button, Card, CardActions, CardContent, IconButton, Typography } from '@mui/material'
+import { Box, Button, Card, CardActions, CardContent, Checkbox, IconButton, Typography } from '@mui/material'
 import { useEffect } from 'react'
 import {useSelector, useDispatch} from 'react-redux'
 import {useNavigate} from 'react-router-dom'
 import {getTasks, reset} from '../features/tasks/taskSlice'
 import {toast} from 'react-toastify'
 import AddForm from './AddForm'
-import { Favorite, Share } from '@mui/icons-material'
+import { Delete, Edit, Favorite, FavoriteBorder, Share } from '@mui/icons-material'
 
 const AllTasks = () => {
   const dispatch = useDispatch()
@@ -37,11 +37,11 @@ const AllTasks = () => {
     <>
       <Box sx={{bgcolor:"lightblue"}} flex={4}>
         { tasks ?
-          <div>
+          <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))'}}>
             {
               tasks.map((task)=> {
                 return <div key={task.id}>
-                      <Box sx={{ minWidth: 275 }}>
+                    <Box sx={{ minWidth: 275 }}>
                       <Card variant="outlined">
                       <CardContent>
                         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
@@ -55,11 +55,12 @@ const AllTasks = () => {
                         </Typography>
                         </CardContent>
                         <CardActions>
-                          <IconButton aria-label="add to favorites">
-                            <Favorite />
+                          <Checkbox icon={<FavoriteBorder />} checkedIcon={<Favorite />} />
+                          <IconButton aria-label="edit">
+                            <Edit />
                           </IconButton>
-                          <IconButton aria-label="share">
-                            <Share />
+                          <IconButton aria-label="edit">
+                            <Delete />
                           </IconButton>
                         </CardActions>
                       </Card>
