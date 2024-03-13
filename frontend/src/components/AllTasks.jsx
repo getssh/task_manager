@@ -37,7 +37,7 @@ const AllTasks = () => {
     <>
       <Box sx={{bgcolor:"lightblue"}} flex={4}>
         { tasks ?
-          <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))'}}>
+          <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap:"2px"}}>
             {
               tasks.map((task)=> {
                 return <div key={task.id}>
