@@ -20,6 +20,18 @@ const signinUser = async(userData) => {
   return response.data
 }
 
+const getUser = async(token) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  }
+
+  const response = await axios.get(API_URL+'profile', config)
+
+  return response.data
+}
+
 const logout = () => {
   localStorage.removeItem('user');
 }
@@ -28,6 +40,7 @@ const userHelper = {
   registerUser,
   signinUser,
   logout,
+  getUser,
 }
 
 export default userHelper
