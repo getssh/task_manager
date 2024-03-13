@@ -34,9 +34,13 @@ export const logout = createAsyncThunk('user/logout/', async(_, thunkAPI) => {
 })
 
 export const getUser = createAsyncThunk('user/getUser', async(_, thunkAPI)=> {
-  const token = await thunkAPI.getState().user.user.token
+  try {    
+    const token = thunkAPI.getState().user.user.token
 
-  return await userHelper.getUser(token)
+    return await userHelper.getUser(token)
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.toString())
+  }
 })
 
 const userSlice = createSlice({

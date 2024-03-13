@@ -21,13 +21,16 @@ const signinUser = async(userData) => {
 }
 
 const getUser = async(token) => {
-  const config = {
+  const config ={
     headers: {
       Authorization: `Bearer ${token}`
     }
   }
 
   const response = await axios.get(API_URL+'profile', config)
+  if (response.data) {
+    localStorage.setItem('user', JSON.stringify(response.data))
+  }
 
   return response.data
 }
