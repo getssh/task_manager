@@ -19,14 +19,16 @@ const Favorite = () => {
 
   return (
     <Box>
-      { tasks &&
-        tasks.map((task)=> {
-          return <div key={task.id}>
-            <div>
-              <p>{task.taskItem}</p>
-            </div>
-          </div>
-        })
+      { tasks.length ?
+        <div>
+          {
+            tasks.map((task)=> {
+              return <div key={task.id}>
+                <p>{task.taskItem}</p>
+              </div>
+            })
+          }
+        </div> : <div>No Task</div>
       }
       <p>faoriate</p>
     </Box>

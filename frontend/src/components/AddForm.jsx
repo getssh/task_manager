@@ -1,8 +1,14 @@
-import { EmailRounded, Key, TaskAlt, TaskSharp, Visibility } from '@mui/icons-material'
+import { TaskSharp } from '@mui/icons-material'
 import { Box, Button, FormControl, IconButton, Input, InputAdornment, MenuItem, Modal, Select, Typography } from '@mui/material'
-import React, { useState } from 'react'
+import { useEffect, useState } from 'react'
+import {useSelector, useDispatch} from 'react-redux'
+import {addTask, getTasks} from '../features/tasks/taskSlice'
+import {useNavigate} from 'react-router-dom'
 
 const AddForm = () => {
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
   const [open, setOpen] = useState(false)
 
   const [formData, setFormData] = useState({
@@ -23,7 +29,17 @@ const AddForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log(formData)
+
+    const taskData = {taskItem, priority}
+
+    dispatch(addTask(taskData))
+    setFormData({
+        taskItem: "",
+        priority: "low",
+    })
+    dispatch(getTasks())
+    navigate('/')
+    setOpen(false)
   }
 
   return (

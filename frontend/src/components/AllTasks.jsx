@@ -4,6 +4,7 @@ import {useSelector, useDispatch} from 'react-redux'
 import {useNavigate} from 'react-router-dom'
 import {getTasks, reset} from '../features/tasks/taskSlice'
 import {toast} from 'react-toastify'
+import AddForm from './AddForm'
 
 const AllTasks = () => {
   const dispatch = useDispatch()
@@ -32,15 +33,21 @@ const AllTasks = () => {
   }
 
   return (
-    <Box sx={{bgcolor:"lightblue"}} flex={4}>
-            { tasks &&
-        tasks.map((task)=> {
-          return <div key={task.id}>
-            <p>{task.taskItem}</p>
-          </div>
-        })
-      }
-    </Box>
+    <>
+      <Box sx={{bgcolor:"lightblue"}} flex={4}>
+        { tasks.length ?
+          <div>
+            {
+              tasks.map((task)=> {
+                return <div key={task.id}>
+                  <p>{task.taskItem}</p>
+                </div>
+              })
+            }
+          </div> : <div>No Task</div>
+        }
+      </Box>
+    </>
   )
 }
 
