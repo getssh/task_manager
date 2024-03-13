@@ -2,7 +2,7 @@ import { Box, Button, Card, CardActions, CardContent, Checkbox, IconButton, Typo
 import { useEffect } from 'react'
 import {useSelector, useDispatch} from 'react-redux'
 import {useNavigate} from 'react-router-dom'
-import {getTasks, reset} from '../features/tasks/taskSlice'
+import {getTasks, removeTask, reset} from '../features/tasks/taskSlice'
 import {toast} from 'react-toastify'
 import AddForm from './AddForm'
 import { Delete, Edit, Favorite, FavoriteBorder, Share } from '@mui/icons-material'
@@ -59,7 +59,9 @@ const AllTasks = () => {
                           <IconButton aria-label="edit">
                             <Edit />
                           </IconButton>
-                          <IconButton aria-label="edit">
+                          <IconButton aria-label="delete"
+                            onClick={()=>{dispatch(removeTask(task._id))}}
+                          >
                             <Delete />
                           </IconButton>
                         </CardActions>

@@ -86,7 +86,7 @@ const taskSlice = createSlice({
         state.isLoading = false
         state.isSuccess = true
         state.tasks = state.tasks.filter((task) => {
-          return task.id !== action.payload.id
+          return task._id !== action.payload.id
         })
       })
       .addCase(removeTask.rejected, (state, action) => {
