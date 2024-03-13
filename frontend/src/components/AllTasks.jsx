@@ -35,7 +35,7 @@ const AllTasks = () => {
   return (
     <>
       <Box sx={{bgcolor:"lightblue"}} flex={4}>
-        { tasks.length ?
+        { tasks ?
           <div>
             {
               tasks.map((task)=> {
