@@ -1,26 +1,9 @@
-import {useEffect} from 'react'
-import {useSelector, useDispatch} from 'react-redux'
-import {toast} from 'react-toastify'
-import { getUser } from '../features/users/userSlice'
-import {useNavigate} from 'react-router-dom'
+import {useSelector} from 'react-redux'
 import { Typography } from '@mui/material'
-import { getTasks } from '../features/tasks/taskSlice'
 
 const Profile = () => {
-  const dispatch = useDispatch()
-  const navigate = useNavigate()
 
-  const {user, isLoading, isError, isSuccess, message} = useSelector((state)=>state.user)
-
-  console.log(user)
-
-  useEffect(()=> {
-    if (isError) {
-      toast.error(message)
-    }
-
-    dispatch(getTasks())
-  }, [dispatch, isError, message])
+  const {user, isLoading} = useSelector((state)=>state.user)
 
   if (isLoading) {
     <div>Loading...</div>
