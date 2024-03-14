@@ -1,10 +1,10 @@
 import { Box, Button, Card, CardActions, CardContent, Checkbox, IconButton, Typography } from '@mui/material'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import {useSelector, useDispatch} from 'react-redux'
 import {useNavigate} from 'react-router-dom'
 import {getTasks, removeTask, reset} from '../features/tasks/taskSlice'
 import {toast} from 'react-toastify'
-import AddForm from './AddForm'
+import { updatedTask } from '../features/tasks/taskSlice'
 import { Delete, Edit, Favorite, FavoriteBorder, Share } from '@mui/icons-material'
 
 const AllTasks = () => {
@@ -30,7 +30,7 @@ const AllTasks = () => {
   }, [dispatch, user, navigate, isError, message])
 
   if (isLoading) {
-    return <div>Loading</div>
+    return <Box flex={4} sx={{height: '100vh', textAlign:'center'}}>Loading</Box>
   }
 
   return (
@@ -40,7 +40,7 @@ const AllTasks = () => {
           <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap:"2px"}}>
             {
               tasks.map((task)=> {
-                return <div key={task.id}>
+                return <div key={task._id}>
                     <Box sx={{ minWidth: 275 }}>
                       <Card variant="outlined">
                       <CardContent>
@@ -55,7 +55,10 @@ const AllTasks = () => {
                         </Typography>
                         </CardContent>
                         <CardActions>
-                          <Checkbox icon={<FavoriteBorder />} checkedIcon={<Favorite />} />
+                          <Checkbox icon={task.favorite ? <Favorite sx={{color: 'red'}}/> : <FavoriteBorder />} 
+                          checkedIcon={task.favorite ? <Favorite sx={{color: 'red'}}/> : <FavoriteBorder />}
+                            onClick={() => dispatch(updatedTask({ taskId: task._id, taskData: { favorite: !task.favorite } }))}
+                          />
                           <IconButton aria-label="edit">
                             <Edit />
                           </IconButton>
