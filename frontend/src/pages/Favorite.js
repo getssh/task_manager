@@ -2,7 +2,6 @@ import { Box } from '@mui/material'
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { favTasks, getTasks } from '../features/tasks/taskSlice'
-import { reset } from '../features/users/userSlice'
 
 const Favorite = () => {
   const dispatch = useDispatch()
@@ -30,7 +29,6 @@ const Favorite = () => {
           }
         </div> : <div>No Task</div>
       }
-      <p>faoriate</p>
     </Box>
   )
 }
