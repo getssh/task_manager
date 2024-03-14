@@ -2,24 +2,36 @@ import { Edit, TaskSharp } from '@mui/icons-material'
 import { Box, Button, FormControl, IconButton, Input, InputAdornment, MenuItem, Modal, Select, Typography } from '@mui/material'
 import { useEffect, useState } from 'react'
 import {useSelector, useDispatch} from 'react-redux'
-import {addTask, getTasks, updatedTask} from '../features/tasks/taskSlice'
-import {useNavigate} from 'react-router-dom'
+import {updatedTask} from '../features/tasks/taskSlice'
+import { getTask } from '../features/tasks/oneTaskSlice'
 
-const UpdateForm = ({taskId}) => {
+const UpdateForm = ({ taskId }) => {
   const dispatch = useDispatch()
-  const navigate = useNavigate()
-
   const [open, setOpen] = useState(false)
-
   const [formData, setFormData] = useState({
     taskItem: "",
-    priority: "low",
+    priority: "",
   })
 
-  const {taskItem, priority} = formData
+  const { task } = useSelector((state) => state.task)
+
+  useEffect(() => {
+    dispatch(getTask(taskId))
+  }, [dispatch, taskId])
+
+  useEffect(() => {
+    if (task) {
+      setFormData({
+        taskItem: task.taskItem,
+        priority: task.priority,
+      })
+    }
+  }, [task])
+
+  const { taskItem, priority } = formData
 
   const handleChange = (e) => {
-    const {name, value} = e.target
+    const { name, value } = e.target
 
     setFormData({
       ...formData,
@@ -30,12 +42,12 @@ const UpdateForm = ({taskId}) => {
   const handleSubmit = (e) => {
     e.preventDefault()
 
-    const taskData = {taskItem, priority}
+    const taskData = { taskItem, priority }
 
-    dispatch(updatedTask({taskId, taskData}))
+    dispatch(updatedTask({ taskId, taskData }))
     setFormData({
-        taskItem: "",
-        priority: "low",
+      taskItem: "",
+      priority: "",
     })
     setOpen(false)
   }
@@ -43,21 +55,18 @@ const UpdateForm = ({taskId}) => {
   return (
     <>
       <IconButton aria-label="edit">
-        <Edit onClick={()=>setOpen(true)}/>
+        <Edit onClick={() => setOpen(true)} />
       </IconButton>
       <Modal
         open={open}
-        onClose={()=>setOpen(false)}
+        onClose={() => setOpen(false)}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
-        sx={{display: 'flex', justifyContent:"center", alignItems:"center"}}
+        sx={{ display: 'flex', justifyContent: "center", alignItems: "center" }}
       >
         <Box
           onSubmit={handleSubmit}
-          component="form" sx={{bgcolor: "lightcyan", display:"flex", gap:5,
-          flexDirection: "column", width: {xs:"90%", sm:"50%", md:"50%", lg:"30%"},
-          borderRadius: 5,
-        }} p={5}>
+          component="form" sx={{ bgcolor: "lightcyan", display: "flex", gap: 5, flexDirection: "column", width: { xs: "90%", sm: "50%", md: "50%", lg: "30%" }, borderRadius: 5, }} p={5}>
           <FormControl variant="standard">
             <Input
               type='text'
@@ -77,6 +86,7 @@ const UpdateForm = ({taskId}) => {
               name="priority"
               label="Priority"
               placeholder='Priority'
+              value={priority}
               onChange={handleChange}
             >
               <MenuItem component="option" value="low">Low</MenuItem>
@@ -85,7 +95,7 @@ const UpdateForm = ({taskId}) => {
             </Select>
           </FormControl>
           <FormControl>
-            <Button variant="contained" type='submit'>Add Task</Button>
+            <Button variant="contained" type='submit'>Update Task</Button>
           </FormControl>
         </Box>
       </Modal>
