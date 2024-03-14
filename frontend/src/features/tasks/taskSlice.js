@@ -92,7 +92,7 @@ const taskSlice = createSlice({
         state.message = action.payload
       })
       .addCase(removeTask.pending, (state) => {
-        state.isLoading = true
+        state.isLoading = false
       })
       .addCase(removeTask.fulfilled, (state, action) => {
         state.isLoading = false
@@ -107,12 +107,15 @@ const taskSlice = createSlice({
         state.message = action.payload
       })
       .addCase(updatedTask.pending, (state) => {
-        state.isLoading = true
+        state.isLoading = false
       })
       .addCase(updatedTask.fulfilled, (state, action) => {
         state.isLoading = false
         state.isSuccess = true
-        state.tasks = action.payload
+        const updatedTaskIndex = state.tasks.findIndex(task => task._id === action.payload._id);
+        if (updatedTaskIndex !== -1) {
+          state.tasks[updatedTaskIndex] = action.payload;
+        }
       })
       .addCase(updatedTask.rejected, (state, action) => {
         state.isLoading = false

@@ -36,45 +36,48 @@ const AllTasks = () => {
   return (
     <>
       <Box sx={{bgcolor:"lightblue"}} flex={4}>
-        { tasks ?
-          <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap:"2px"}}>
-            {
-              tasks.map((task)=> {
-                return <div key={task._id}>
-                    <Box sx={{ minWidth: 275 }}>
-                      <Card variant="outlined">
-                      <CardContent>
-                        <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                          Task Details
-                        </Typography>
-                        <Typography variant="h5" component="div">
-                          {task.taskItem}
-                        </Typography>
-                        <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                          Not completed
-                        </Typography>
-                        </CardContent>
-                        <CardActions>
-                          <Checkbox icon={task.favorite ? <Favorite sx={{color: 'red'}}/> : <FavoriteBorder />} 
-                          checkedIcon={task.favorite ? <Favorite sx={{color: 'red'}}/> : <FavoriteBorder />}
-                            onClick={() => dispatch(updatedTask({ taskId: task._id, taskData: { favorite: !task.favorite } }))}
-                          />
-                          <IconButton aria-label="edit">
-                            <Edit />
-                          </IconButton>
-                          <IconButton aria-label="delete"
-                            onClick={()=>{dispatch(removeTask(task._id))}}
-                          >
-                            <Delete />
-                          </IconButton>
-                        </CardActions>
-                      </Card>
-                    </Box>
+        <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap:"2px"}}>
+        {tasks.length > 0 ? (
+
+            tasks.map((task) => {
+              return (
+                <div key={task._id}>
+                  <Box sx={{ minWidth: 275 }}>
+                    <Card variant="outlined">
+                    <CardContent>
+                      <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+                        Task Details
+                      </Typography>
+                      <Typography variant="h5" component="div">
+                        {task.taskItem}
+                      </Typography>
+                      <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                        Not completed
+                      </Typography>
+                      </CardContent>
+                      <CardActions>
+                        <Checkbox icon={task.favorite ? <Favorite sx={{color: 'red'}}/> : <FavoriteBorder />} 
+                        checkedIcon={task.favorite ? <Favorite sx={{color: 'red'}}/> : <FavoriteBorder />}
+                          onClick={() => dispatch(updatedTask({ taskId: task._id, taskData: { favorite: !task.favorite } }))}
+                        />
+                        <IconButton aria-label="edit">
+                          <Edit />
+                        </IconButton>
+                        <IconButton aria-label="delete"
+                          onClick={()=>{dispatch(removeTask(task._id))}}
+                        >
+                          <Delete />
+                        </IconButton>
+                      </CardActions>
+                    </Card>
+                  </Box>
                 </div>
-              })
-            }
-          </div> : <div>No Task</div>
-        }
+              );
+            })
+            ) : (
+              <div>No Task</div>
+              )}
+        </div>
       </Box>
     </>
   )
