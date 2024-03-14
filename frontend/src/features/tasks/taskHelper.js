@@ -35,10 +35,22 @@ const removeTask = async(taskId, token) => {
   return response.data
 }
 
+const updatedTask = async(taskId, taskData, token) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  }
+
+  const response = await axios.put(API_URL+taskId, taskData, config)
+  return response.data
+}
+
 const taskHelper = {
   getTasks,
   addTask,
   removeTask,
+  updatedTask,
 }
 
 export default taskHelper
