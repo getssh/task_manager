@@ -1,5 +1,5 @@
-import { TaskSharp } from '@mui/icons-material'
-import { Box, Button, FormControl, IconButton, Input, InputAdornment, MenuItem, Modal, Select, Typography } from '@mui/material'
+import { Add, TaskSharp } from '@mui/icons-material'
+import { Box, Button, Fab, FormControl, IconButton, Input, InputAdornment, MenuItem, Modal, Select, Tooltip, Typography } from '@mui/material'
 import { useEffect, useState } from 'react'
 import {useSelector, useDispatch} from 'react-redux'
 import {addTask, getTasks} from '../features/tasks/taskSlice'
@@ -44,7 +44,13 @@ const AddForm = () => {
 
   return (
     <>
-      <Button onClick={()=>setOpen(true)}>Add Task</Button>
+      <Tooltip
+      onClick={(e)=>setOpen(true)}
+      title="Add" sx={{position: "fixed", bottom:20, left:{xs:"calc(50% - 25px)", md:30}}}>
+        <Fab color="primary" aria-label="add">
+          <Add />
+        </Fab>
+      </Tooltip>
       <Modal
         open={open}
         onClose={()=>setOpen(false)}

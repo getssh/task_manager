@@ -37,7 +37,7 @@ const AllTasks = () => {
   return (
     <>
       <Box sx={{bgcolor:"lightblue"}} flex={4}>
-        <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))'}}>
+        <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))'}}>
         {tasks.length > 0 ? (
 
             tasks.map((task) => {
