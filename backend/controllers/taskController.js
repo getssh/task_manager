@@ -11,6 +11,16 @@ const getTasks = asyncHandler(async(req, res) => {
   res.status(200).json(tasks)
 })
 
+const getTask = asyncHandler(async(req, res) => {
+  const task = await Task.findById(req.params.id)
+  if (!req.user) {
+    res.status(400)
+    throw new Error('User not found')
+  }
+
+  res.status(200).json(task)
+})
+
 const createTask = asyncHandler(async(req, res) => {
   const {taskItem, priority, taskCompleted, favorite} = req.body
 
@@ -71,6 +81,7 @@ const deleteTask = asyncHandler(async(req, res) => {
 
 module.exports = {
   getTasks,
+  getTask,
   createTask,
   updateTask,
   deleteTask,
