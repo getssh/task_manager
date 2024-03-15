@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { favTasks, getTasks } from '../features/tasks/taskSlice'
 import { FavoriteBorder, FavoriteSharp, Inbox } from '@mui/icons-material'
 
-const Favorite = () => {
+const Favorite = ({favFilter}) => {
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -16,13 +16,14 @@ const Favorite = () => {
 
   const { tasks } = useSelector((state) => state.tasks)
 
-  const favoriteTasks = tasks ? tasks.filter(task => task.favorite) : []
+  const filterdTasks = tasks && favFilter ? tasks.filter(task => task.favorite) :
+   tasks && !favFilter ? tasks.filter(task => task.taskCompleted) : []
 
   return (
     <Box>
-      {favoriteTasks && favoriteTasks.length ? (
+      {filterdTasks && filterdTasks.length ? (
         <>
-          {favoriteTasks.map((task) => (
+          {filterdTasks.map((task) => (
             <List dense={true} key={task._id}>
               <ListItem>
                 <ListItemText
