@@ -69,7 +69,7 @@ const AllTasks = () => {
                         checkedIcon={task.favorite ? <Favorite sx={{color: 'red'}}/> : <FavoriteBorder />}
                           onClick={() => dispatch(updatedTask({ taskId: task._id, taskData: { favorite: !task.favorite } }))}
                         />
-                        <UpdateForm taskId={task._id}/>
+                        <UpdateForm taskToUpdate={task}/>
                         <IconButton aria-label="delete"
                           onClick={()=>{dispatch(removeTask(task._id))}}
                         >

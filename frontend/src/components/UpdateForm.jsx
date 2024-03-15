@@ -5,7 +5,7 @@ import {useSelector, useDispatch} from 'react-redux'
 import {updatedTask} from '../features/tasks/taskSlice'
 import { getTask } from '../features/tasks/oneTaskSlice'
 
-const UpdateForm = ({ taskId }) => {
+const UpdateForm = ({ taskToUpdate }) => {
   const dispatch = useDispatch()
   const [open, setOpen] = useState(false)
   const [formData, setFormData] = useState({
@@ -13,20 +13,18 @@ const UpdateForm = ({ taskId }) => {
     priority: "",
   })
 
-  const { task } = useSelector((state) => state.task)
+  // useEffect(() => {
+  //   dispatch(getTask(taskId))
+  // }, [dispatch, taskId])
 
   useEffect(() => {
-    dispatch(getTask(taskId))
-  }, [dispatch, taskId])
-
-  useEffect(() => {
-    if (task) {
+    if (taskToUpdate) {
       setFormData({
-        taskItem: task.taskItem,
-        priority: task.priority,
+        taskItem: taskToUpdate.taskItem,
+        priority: taskToUpdate.priority,
       })
     }
-  }, [task])
+  }, [taskToUpdate])
 
   const { taskItem, priority } = formData
 
@@ -44,7 +42,7 @@ const UpdateForm = ({ taskId }) => {
 
     const taskData = { taskItem, priority }
 
-    dispatch(updatedTask({ taskId, taskData }))
+    dispatch(updatedTask({ taskId: taskToUpdate._id, taskData }))
     setFormData({
       taskItem: "",
       priority: "",
