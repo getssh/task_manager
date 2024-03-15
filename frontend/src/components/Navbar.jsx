@@ -2,7 +2,7 @@ import { AppBar, Avatar, Badge, Box, Button, IconButton, Toolbar, Typography } f
 import {Menu, TaskAlt} from '@mui/icons-material'
 import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import {logout} from '../features/users/userSlice'
+import {logout, reset} from '../features/users/userSlice'
 import { useSelector, useDispatch } from 'react-redux'
 
 const Navbar = () => {
@@ -13,6 +13,7 @@ const Navbar = () => {
 
   const handleSignout = () => {
     dispatch(logout())
+    dispatch(reset())
     navigate('/signin')
   }
 

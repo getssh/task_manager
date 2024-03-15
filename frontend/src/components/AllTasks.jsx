@@ -1,11 +1,9 @@
-import { Box, Button, Card, CardActions, CardContent, Checkbox, IconButton, Typography } from '@mui/material'
+import { Box } from '@mui/material'
 import { useEffect } from 'react'
 import {useSelector, useDispatch} from 'react-redux'
 import {useNavigate} from 'react-router-dom'
-import {getTasks, removeTask, reset, updatedTask} from '../features/tasks/taskSlice'
+import {getTasks, reset} from '../features/tasks/taskSlice'
 import {toast} from 'react-toastify'
-import { Delete, Favorite, FavoriteBorder } from '@mui/icons-material'
-import UpdateForm from './UpdateForm'
 import Task from './Task'
 
 const AllTasks = () => {
@@ -38,15 +36,11 @@ const AllTasks = () => {
     <>
       <Box flex={4}>
         <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap:2}}>
-        {tasks.length > 0 ? (
+        {tasks && tasks.length > 0 ? (
 
-            tasks.map((task) => {
-              return (
-                <div key={task._id}>
-                  <Task task={task}/>
-                </div>
-              );
-            })
+            tasks.map((task) => (
+                <Task key={task._id} task={task}/>
+              ))
             ) : (
               <div>No Task</div>
               )}

@@ -22,7 +22,7 @@ const Task = ({task}) => {
       <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
         Task Details
       </Typography>
-      <Typography variant="p" component="div">
+      <Typography variant="p" component={task.taskCompleted ? 'del' : 'div'}>
         {task.taskItem}
       </Typography>
       <Typography sx={{ mb: 1.5 }} color="text.secondary">
