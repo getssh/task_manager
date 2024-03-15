@@ -36,16 +36,20 @@ const AllTasks = () => {
 
   return (
     <>
-      <Box sx={{bgcolor:"lightblue"}} flex={4}>
-        <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))'}}>
+      <Box flex={4}>
+        <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap:2}}>
         {tasks.length > 0 ? (
 
             tasks.map((task) => {
               return (
                 <div key={task._id}>
                   <Box sx={{ minWidth: 275 }}>
-                    <Card variant="outlined">
+                    <Card variant="outlined" sx={{boxShadow: '1px 1px 2px gray'}}>
                     <CardContent>
+                    <Checkbox sx={{ml: -2}}
+                      checked={task.taskCompleted ? 'checked' : ''}
+                      onClick={() => dispatch(updatedTask({ taskId: task._id, taskData: { taskCompleted: !task.taskCompleted } }))}
+                    /> Mark as complete
                       <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
                         Task Details
                       </Typography>
@@ -53,7 +57,7 @@ const AllTasks = () => {
                         {task.taskItem}
                       </Typography>
                       <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                        Not completed
+                        {task.taskCompleted ? 'Completed' : 'Not completed'}
                       </Typography>
                       </CardContent>
                       <CardActions>

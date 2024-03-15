@@ -64,6 +64,7 @@ const AddForm = () => {
           flexDirection: "column", width: {xs:"90%", sm:"50%", md:"50%", lg:"30%"},
           borderRadius: 5,
         }} p={5}>
+          <Typography variant='h6' sx={{textAlign: 'center'}}>Add a New Task</Typography>
           <FormControl variant="standard">
             <Input
               type='text'

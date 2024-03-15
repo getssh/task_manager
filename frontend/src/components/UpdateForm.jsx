@@ -67,6 +67,7 @@ const UpdateForm = ({ taskId }) => {
         <Box
           onSubmit={handleSubmit}
           component="form" sx={{ bgcolor: "lightcyan", display: "flex", gap: 5, flexDirection: "column", width: { xs: "90%", sm: "50%", md: "50%", lg: "30%" }, borderRadius: 5, }} p={5}>
+          <Typography variant='h6' sx={{textAlign: 'center'}}>Update Tast</Typography>
           <FormControl variant="standard">
             <Input
               type='text'
