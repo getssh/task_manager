@@ -44,7 +44,11 @@ const AllTasks = () => {
               return (
                 <div key={task._id}>
                   <Box sx={{ minWidth: 275 }}>
-                    <Card variant="outlined" sx={{boxShadow: '1px 1px 2px gray'}}>
+                    <Card variant="outlined" sx={{boxShadow: '1px 1px 2px gray',
+                      backgroundColor: task.taskCompleted ? 'lightgrey' : task.priority === 'high' && !task.taskCompleted ? 'lightyellow' :
+                      task.priority === 'urgent' && !task.taskCompleted ? 'lightpink' : 'white'
+                    }}
+                    >
                     <CardContent>
                     <Checkbox sx={{ml: -2}}
                       checked={task.taskCompleted ? 'checked' : ''}
