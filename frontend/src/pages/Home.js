@@ -5,7 +5,7 @@ import AddForm from '../components/AddForm'
 
 const home = () => {
   return (
-    <Box>
+    <Box p={2}>
       <Stack direction="row" spacing={2}>
         <Sidebar />
         <AllTasks />

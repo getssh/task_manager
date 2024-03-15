@@ -58,9 +58,14 @@ const taskSlice = createSlice({
       state = initialState
     },
     favTasks: (state) => {
-      state.tasks = state.tasks.filter((task)=>{
-        return task.favorite === true
-      })
+      if (state.tasks) {
+        return {
+          ...state,
+          tasks: state.tasks.filter((task) => task.favorite === true),
+        };
+      } else {
+        return state;
+      }
     },
   },
   extraReducers: (builder) => {
