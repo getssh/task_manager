@@ -9,7 +9,11 @@ const Sidebar = () => {
         <Typography variant='h5'>
           Favorite Tasks
         </Typography>
-        <Favorite />
+        <Favorite favFilter={true}/>
+        <Typography variant='h5'>
+          Completed Tasks
+        </Typography>
+        <Favorite favFilter={false}/>
       </Box>
     </Box>
   )
