@@ -15,6 +15,7 @@ const Navbar = () => {
     dispatch(logout());
     dispatch(reset());
     navigate('/signin');
+    handleMenuClose()
   };
 
   const [anchorEl, setAnchorEl] = useState(null);
@@ -84,9 +85,9 @@ const Navbar = () => {
           horizontal: 'right',
         }}
       >
-        <MenuItem component={Link} to="/" color="inherit" exact>Tasks</MenuItem>
-        <MenuItem component={Link} to="/liked" color="inherit">Favorite</MenuItem>
-        <MenuItem component={Link} to="/profile">Profile</MenuItem>
+        <MenuItem component={Link} onClick={handleMenuClose} to="/" color="inherit" exact>Tasks</MenuItem>
+        <MenuItem component={Link} onClick={handleMenuClose} to="/liked" color="inherit">Favorite</MenuItem>
+        <MenuItem component={Link} onClick={handleMenuClose} to="/profile">Profile</MenuItem>
         <MenuItem onClick={handleSignout}>Logout</MenuItem>
       </Menu>
     </AppBar>
