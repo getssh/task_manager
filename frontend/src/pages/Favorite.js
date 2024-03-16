@@ -3,6 +3,7 @@ import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { favTasks, getTasks } from '../features/tasks/taskSlice'
 import { Delete, FavoriteBorder, FavoriteSharp, Inbox, OpenInNew } from '@mui/icons-material'
+import ShowTask from '../components/ShowTask'
 
 const Favorite = ({favFilter}) => {
   const dispatch = useDispatch()
@@ -30,9 +31,7 @@ const Favorite = ({favFilter}) => {
                   primary={task.taskItem}
                   secondary={null}
                 />
-                <IconButton aria-label="delete">
-                  <OpenInNew />
-                </IconButton>
+              <ShowTask taskItem={task}/>
               </ListItem>
             </List>
           ))}

@@ -5,7 +5,7 @@ import { CheckCircle, CheckCircleOutline, FavoriteBorderRounded } from '@mui/ico
 
 const Sidebar = () => {
   return (
-    <Box flex={{sm:2, md:1}} px={2}>
+    <Box flex={{sm:2, md:1}} px={2} sx={{display: {xs: 'none', sm: 'block'}}}>
       <Box sx={{position: 'fixed', overflow: 'hidden', maxWidth: {sm: '30%', md:'20%'}}}>
         <Box>
           <Typography variant='h5' sx={{position: 'sticky', top: 0}}>
