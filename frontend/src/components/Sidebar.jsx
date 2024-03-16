@@ -1,7 +1,7 @@
 import { Box, Typography } from '@mui/material'
 import React from 'react'
-import Favorite from '../pages/Favorite'
-import { CheckCircle, CheckCircleOutline, FavoriteBorderRounded } from '@mui/icons-material'
+import { CheckCircleOutline, FavoriteBorderRounded } from '@mui/icons-material'
+import TaskFilter from './TaskFilter'
 
 const Sidebar = () => {
   return (
@@ -14,7 +14,7 @@ const Sidebar = () => {
         </Box>
         <Box sx={{height: '40vh', overflowX: 'hidden', overflowY: 'scroll', '&::-webkit-scrollbar': {
           display: 'none'}}}>
-          <Favorite favFilter={true} />
+          <TaskFilter favFilter={true} />
         </Box>
         <Box py={2}>
           <Typography variant='h5' sx={{position: 'sticky', top: 0}}>
@@ -23,7 +23,7 @@ const Sidebar = () => {
         </Box>
         <Box sx={{height: '50vh', overflowX: 'hidden', overflowY: 'scroll', '&::-webkit-scrollbar': {
           display: 'none'}}}>          
-          <Favorite favFilter={false}/>
+          <TaskFilter favFilter={false}/>
         </Box>
       </Box>
     </Box>
