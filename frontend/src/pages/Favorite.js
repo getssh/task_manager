@@ -1,8 +1,8 @@
-import { Box, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material'
+import { Box, IconButton, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material'
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { favTasks, getTasks } from '../features/tasks/taskSlice'
-import { FavoriteBorder, FavoriteSharp, Inbox, OpenInNew } from '@mui/icons-material'
+import { Delete, FavoriteBorder, FavoriteSharp, Inbox, OpenInNew } from '@mui/icons-material'
 
 const Favorite = ({favFilter}) => {
   const dispatch = useDispatch()
@@ -24,13 +24,15 @@ const Favorite = ({favFilter}) => {
       {filterdTasks && filterdTasks.length ? (
         <>
           {filterdTasks.map((task) => (
-            <List dense={true} key={task._id} sx={{backgroundColor: '#dff0ed', margin: '5px 0'}}>
+            <List dense={true} key={task._id} sx={{backgroundColor: favFilter ? '#dff0ed' : '#d4bf90', margin: '5px 0'}}>
               <ListItem>
                 <ListItemText
                   primary={task.taskItem}
                   secondary={null}
                 />
-                <OpenInNew />
+                <IconButton aria-label="delete">
+                  <OpenInNew />
+                </IconButton>
               </ListItem>
             </List>
           ))}
