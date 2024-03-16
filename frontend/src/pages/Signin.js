@@ -43,7 +43,6 @@ const Signin = () => {
     e.preventDefault()
     const userInfo = {email, password}
     dispatch(signinUser(userInfo))
-    console.log(userData)
   }
 
   const handleChange = (e) => {
