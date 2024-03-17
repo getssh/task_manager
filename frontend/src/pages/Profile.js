@@ -16,17 +16,23 @@ const Profile = () => {
         user ? <Box sx={{display: 'flex', flexDirection: 'column', 
           height: '80vh',
         justifyContent: 'center', alignItems: 'center', gap: 3}}>
-          <Typography variant='h4'>
+          <Typography variant='h5'>
             Name: {user.name}
           </Typography>
-          <Typography variant='h4'>
+          <Typography variant='h5'>
             Email: {user.email}
           </Typography>
-          <Typography variant='h4'>
+          <Typography variant='h5'>
             Total Tasks: {tasks.length}
           </Typography>
-          <Typography variant='h4'>
-            Account Created: {new Date(user.createdAt).toLocaleString('en-us')}
+          <Typography variant='h5'>
+          Account Created: {
+              new Date(user.createdAt).toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit'
+              })
+            }
           </Typography>
         </Box> : 
         <div>No user found</div>
