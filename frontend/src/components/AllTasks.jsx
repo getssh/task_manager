@@ -1,8 +1,8 @@
 import { Box } from '@mui/material'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import {useSelector, useDispatch} from 'react-redux'
 import {useNavigate} from 'react-router-dom'
-import {getTasks, reset} from '../features/tasks/taskSlice'
+import {filterTask, getTasks, reset} from '../features/tasks/taskSlice'
 import {toast} from 'react-toastify'
 import Task from './Task'
 import { Cached } from '@mui/icons-material'
@@ -13,6 +13,10 @@ const AllTasks = () => {
 
   const {tasks, isLoading, isError, message} = useSelector((state) => state.tasks)
   const {user} = useSelector((state)=> state.user)
+
+  const [valuee, setValue] = useState({
+    filterValue: '',
+  })
 
   useEffect(()=> {
     if (isError) {
@@ -29,6 +33,16 @@ const AllTasks = () => {
     }
   }, [dispatch, user, navigate, isError, message])
 
+  const handleChange = (e) => {
+    const {name, value} = e.target
+
+    setValue({
+      [name]: value
+    })
+    
+    dispatch(filterTask(valuee));
+  }
+
   if (isLoading) {
     return (
       <Box flex={4} sx={{
@@ -42,6 +56,12 @@ const AllTasks = () => {
   return (
     <>
       <Box flex={4}>
+          <input
+            type="text"
+            name='filterValue'
+            value={valuee.filterValue}
+            onChange={handleChange}
+          />
         <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap:2}}>
         {tasks && tasks.length > 0 ? (
 
