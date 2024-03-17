@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import { AccountCircle, EmailRounded, Key, Visibility, VisibilityOff } from '@mui/icons-material'
+import { AccountCircle, Cached, EmailRounded, Key, Visibility, VisibilityOff } from '@mui/icons-material'
 import { Box, Button, FormControl, IconButton, Input, InputAdornment, Typography } from '@mui/material'
 import { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
@@ -63,7 +63,13 @@ const Signup = () => {
   }
 
   if (isLoading) {
-    return <div>Loading</div>
+    return (
+      <Box flex={4} sx={{
+        position: 'fixed', top: '50%', left: '50%',
+        textAlign:'center', justifyContent:'center'}}>
+        <Cached sx={{width: '5rem', height: '5rem'}}/>
+      </Box>
+    )
   }
 
   return (

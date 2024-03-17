@@ -2,7 +2,7 @@ import {useDispatch, useSelector} from 'react-redux'
 import { Box, Button, Card, CardActions, CardContent, Modal, Tooltip, Typography } from '@mui/material'
 import { useEffect, useState } from 'react'
 import { getTasks } from '../features/tasks/taskSlice'
-import { deleteUser, reset } from '../features/users/userSlice'
+import { deleteUser } from '../features/users/userSlice'
 import { toast } from 'react-toastify'
 import { useNavigate } from 'react-router-dom'
 

@@ -5,6 +5,7 @@ import {useNavigate} from 'react-router-dom'
 import {getTasks, reset} from '../features/tasks/taskSlice'
 import {toast} from 'react-toastify'
 import Task from './Task'
+import { Cached } from '@mui/icons-material'
 
 const AllTasks = () => {
   const dispatch = useDispatch()
@@ -29,7 +30,13 @@ const AllTasks = () => {
   }, [dispatch, user, navigate, isError, message])
 
   if (isLoading) {
-    return <Box flex={4} sx={{height: '100vh', textAlign:'center'}}>Loading</Box>
+    return (
+      <Box flex={4} sx={{
+        position: 'fixed', top: '50%', left: '50%',
+        textAlign:'center', justifyContent:'center'}}>
+        <Cached sx={{width: '5rem', height: '5rem'}}/>
+      </Box>
+    )
   }
 
   return (

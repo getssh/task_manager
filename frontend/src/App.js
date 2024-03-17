@@ -1,4 +1,3 @@
-import {useSelector } from "react-redux/es/hooks/useSelector";
 import {BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import {Box} from '@mui/material'
 import Navbar from './components/Navbar'
@@ -11,7 +10,6 @@ import Signup from "./pages/Signup";
 import { ToastContainer } from "react-toastify";
 
 function App() {
-  const {tasks} = useSelector((state)=>state.tasks)
 
   return (
     <Box>
