@@ -2,10 +2,22 @@ import {useDispatch, useSelector} from 'react-redux'
 import { Box, Button, Card, CardActions, CardContent, Modal, Tooltip, Typography } from '@mui/material'
 import { useEffect, useState } from 'react'
 import { getTasks } from '../features/tasks/taskSlice'
+import { deleteUser, reset } from '../features/users/userSlice'
+import { toast } from 'react-toastify'
+import { useNavigate } from 'react-router-dom'
 
 
 const WarnningModal = () => {
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
   const [open, setOpen] = useState(false)
+
+  const handleDelete = () => {
+    dispatch(deleteUser())
+    navigate('/signin')
+  }
+
   return (
     <div>
     <Tooltip
@@ -29,8 +41,12 @@ const WarnningModal = () => {
         <i>This action can not be undo</i>
       </Typography>
       <div style={{display: 'flex', justifyContent: 'center', gap:'2rem'}}>
-        <Button variant='contained'>Cancel</Button>
-        <Button variant='contained' color='error'>Delete Acc</Button>
+        <Button variant='contained'
+          onClick={()=> setOpen(false)}
+        >Cancel</Button>
+        <Button variant='contained' color='error'
+          onClick={handleDelete}
+        >Delete Acc</Button>
       </div>
     </Box>
     </Modal>
@@ -40,12 +56,15 @@ const WarnningModal = () => {
 const Profile = () => {
   const dispatch = useDispatch()
 
-  const {user, isLoading} = useSelector((state)=>state.user)
+  const {user, isLoading, isError, message} = useSelector((state)=>state.user)
   const {tasks} = useSelector((state) => state.tasks)
 
   useEffect(() => {
+    if (isError) {
+      toast.error(message)
+    }
     dispatch(getTasks())
-  }, [dispatch])
+  }, [dispatch, isError, message])
 
   if (isLoading) {
     <div>Loading...</div>
