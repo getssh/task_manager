@@ -1,6 +1,7 @@
-import {useSelector} from 'react-redux'
-import { Box, Button, Card, CardActions, CardContent, IconButton, Modal, Tooltip, Typography } from '@mui/material'
-import { useState } from 'react'
+import {useDispatch, useSelector} from 'react-redux'
+import { Box, Button, Card, CardActions, CardContent, Modal, Tooltip, Typography } from '@mui/material'
+import { useEffect, useState } from 'react'
+import { getTasks } from '../features/tasks/taskSlice'
 
 
 const WarnningModal = () => {
@@ -24,7 +25,8 @@ const WarnningModal = () => {
       }}>
       <Typography>
         Are you sure you want to delete your account?<br/>
-        <i>This action can't be undo</i>
+        All associated tasks will be deleted<br/>
+        <i>This action can not be undo</i>
       </Typography>
       <div style={{display: 'flex', justifyContent: 'center', gap:'2rem'}}>
         <Button variant='contained'>Cancel</Button>
@@ -36,11 +38,15 @@ const WarnningModal = () => {
   )
 }
 const Profile = () => {
+  const dispatch = useDispatch()
 
   const {user, isLoading} = useSelector((state)=>state.user)
   const {tasks} = useSelector((state) => state.tasks)
 
-  console.log(user)
+  useEffect(() => {
+    dispatch(getTasks())
+  }, [dispatch])
+
   if (isLoading) {
     <div>Loading...</div>
   }

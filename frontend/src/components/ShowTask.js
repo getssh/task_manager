@@ -21,7 +21,7 @@ const ShowTask = ({taskItem}) => {
         aria-describedby="modal-modal-description"
         sx={{display: 'flex', justifyContent:"center", alignItems:"center"}}
       >
-      <Box p={3} sx={{backgroundColor: 'white'}}>
+      <Box p={3} sx={{backgroundColor: 'white', borderRadius: 3}}>
         <Task task={taskItem}/>
       </Box>
       </Modal>
