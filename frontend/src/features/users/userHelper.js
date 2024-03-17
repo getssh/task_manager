@@ -20,6 +20,17 @@ const signinUser = async(userData) => {
   return response.data
 }
 
+const deleteUser = async(token) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  }
+
+  const response = await axios.delete(API_URL+'removeuser', config)
+  return response.data
+}
+
 const logout = () => {
   localStorage.removeItem('user');
 }
@@ -28,6 +39,7 @@ const userHelper = {
   registerUser,
   signinUser,
   logout,
+  deleteUser,
 }
 
 export default userHelper
