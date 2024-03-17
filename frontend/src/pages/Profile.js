@@ -1,6 +1,40 @@
 import {useSelector} from 'react-redux'
-import { Box, Button, Card, CardActions, CardContent, Typography } from '@mui/material'
+import { Box, Button, Card, CardActions, CardContent, IconButton, Modal, Tooltip, Typography } from '@mui/material'
+import { useState } from 'react'
 
+
+const WarnningModal = () => {
+  const [open, setOpen] = useState(false)
+  return (
+    <div>
+    <Tooltip
+      onClick={(e)=>setOpen(true)}
+      title="showtask">
+      <Button size="small" variant='contained' color='error'>Delete Account</Button>
+    </Tooltip>
+    <Modal
+      open={open}
+      onClose={()=>setOpen(false)}
+      aria-labelledby="modal-modal-title"
+      aria-describedby="modal-modal-description"
+      sx={{display: 'flex', justifyContent:"center", alignItems:"center"}}
+    >
+    <Box p={5} sx={{backgroundColor: 'white', textAlign: 'center', display: 'flex',
+      flexDirection: 'column', gap: 2, borderRadius:3
+      }}>
+      <Typography>
+        Are you sure you want to delete your account?<br/>
+        <i>This action can't be undo</i>
+      </Typography>
+      <div style={{display: 'flex', justifyContent: 'center', gap:'2rem'}}>
+        <Button variant='contained'>Cancel</Button>
+        <Button variant='contained' color='error'>Delete Acc</Button>
+      </div>
+    </Box>
+    </Modal>
+  </div>
+  )
+}
 const Profile = () => {
 
   const {user, isLoading} = useSelector((state)=>state.user)
@@ -38,7 +72,7 @@ const Profile = () => {
               </Typography>
             </CardContent>
             <CardActions>
-              <Button size="small" variant='contained' color='error'>Delete Account</Button>
+                <WarnningModal />
             </CardActions>
           </Card> 
         </Box>
