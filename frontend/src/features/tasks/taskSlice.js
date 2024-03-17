@@ -65,6 +65,11 @@ const taskSlice = createSlice({
         return state;
       }
     },
+    filterTask: (state, action) => {
+      state.tasks = state.tasks.filter((task) => {
+        return task.taskItem.includes(action.payload.filterValue);
+      });
+    }    
   },
   extraReducers: (builder) => {
     builder
@@ -128,5 +133,5 @@ const taskSlice = createSlice({
   }
 })
 
-export const {reset, favTasks} = taskSlice.actions
+export const {reset, favTasks, filterTask} = taskSlice.actions
 export default taskSlice.reducer
