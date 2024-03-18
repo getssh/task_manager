@@ -14,10 +14,6 @@ const AllTasks = () => {
   const {tasks, isLoading, isError, message} = useSelector((state) => state.tasks)
   const {user} = useSelector((state)=> state.user)
 
-  const [valuee, setValue] = useState({
-    filterValue: '',
-  })
-
   useEffect(()=> {
     if (isError) {
       toast.error(message)
@@ -34,14 +30,10 @@ const AllTasks = () => {
   }, [dispatch, user, navigate, isError, message])
 
   const handleChange = (e) => {
-    const {name, value} = e.target
-
-    setValue({
-      [name]: value
-    })
-    
-    dispatch(filterTask(valuee));
-  }
+    const filterValue = e.target.value; 
+    dispatch(filterTask(filterValue));
+  };
+  
 
   if (isLoading) {
     return (
@@ -59,8 +51,7 @@ const AllTasks = () => {
           <input
             type="text"
             name='filterValue'
-            value={valuee.filterValue}
-            onChange={handleChange}
+            onInput={handleChange}
           />
         <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap:2}}>
         {tasks && tasks.length > 0 ? (
