@@ -87,6 +87,7 @@ const AllTasks = () => {
             value={filterItem.priorityFilter}
             onChange={handleChange}
           >
+            <option value='all'>All priority</option>
             <option value='low'>Low</option>
             <option value='high'>High</option>
             <option value='urgent'>Urgent</option>
