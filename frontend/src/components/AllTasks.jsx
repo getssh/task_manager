@@ -33,6 +33,7 @@ const AllTasks = () => {
     taskText: '',
     isComplete: false,
     isFavorite: false,
+    priorityFilter: '',
   })
 
   const handleChange = (e) => {
@@ -82,7 +83,8 @@ const AllTasks = () => {
             onChange={handleChange}
           /> Favorited
           <select
-            name="praority"
+            name="priorityFilter"
+            value={filterItem.priorityFilter}
             onChange={handleChange}
           >
             <option value='low'>Low</option>
