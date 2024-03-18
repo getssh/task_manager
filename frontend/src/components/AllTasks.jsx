@@ -2,7 +2,7 @@ import { Box } from '@mui/material'
 import { useEffect, useState } from 'react'
 import {useSelector, useDispatch} from 'react-redux'
 import {useNavigate} from 'react-router-dom'
-import {filterTask, getTasks, reset} from '../features/tasks/taskSlice'
+import {filterComplete, filterTask, getTasks, reset} from '../features/tasks/taskSlice'
 import {toast} from 'react-toastify'
 import Task from './Task'
 import { Cached } from '@mui/icons-material'
@@ -29,11 +29,19 @@ const AllTasks = () => {
     }
   }, [dispatch, user, navigate, isError, message])
 
+  const [filterItem, setFilterItem] = useState({
+    isComplete: false,
+    isFavorite: false,
+  })
+
   const handleChange = (e) => {
-    const filterValue = e.target.value; 
-    dispatch(filterTask(filterValue));
+    dispatch(filterTask(e.target.value))
   };
-  
+
+  const handleComplete = (e) => {
+    e.target.checked = !e.target.checked ? true : false;
+    dispatch(filterComplete(e.target.checked))
+  }
 
   if (isLoading) {
     return (
@@ -48,11 +56,33 @@ const AllTasks = () => {
   return (
     <>
       <Box flex={4}>
+        <Box>
           <input
             type="text"
-            name='filterValue'
+            name='itemText'
             onInput={handleChange}
           />
+          <input
+            type='checkBox'
+            name='isComplete'
+            checked={false}
+            onChange={handleComplete}
+          /> Completed
+          <input
+            type='checkBox'
+            name='isFavorite'
+            checked={filterItem.isFavorite}
+            onChange={handleChange}
+          /> Favorited
+          <select
+            name="praority"
+            onChange={handleChange}
+          >
+            <option value='low'>Low</option>
+            <option value='high'>High</option>
+            <option value='urgent'>Urgent</option>
+          </select>
+        </Box>
         <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap:2}}>
         {tasks && tasks.length > 0 ? (
 

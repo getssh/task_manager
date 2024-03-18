@@ -67,16 +67,27 @@ const taskSlice = createSlice({
       }
     },
     filterTask: (state, action) => {
-
       const control = [...state.filter];
-      state.tasks = control;
+      state.tasks = control
+ 
       const filteredtask = state.tasks
         .filter((task) => (
-          task.taskItem.toLowerCase().includes(action.payload)
-        ));
+          task.taskItem.toString().includes(action.payload)
+        ))
 
       state.tasks = filteredtask;
-    }  
+    },
+    filterComplete: (state, action) => {
+      const control = [...state.filter];
+      state.tasks = control
+ 
+      const filteredtask = action.payload ? state.tasks
+        .filter((task) => (
+          task.taskCompleted === action.payload
+        )) : state.tasks
+
+      state.tasks = filteredtask;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -141,5 +152,5 @@ const taskSlice = createSlice({
   }
 })
 
-export const {reset, favTasks, filterTask} = taskSlice.actions
+export const {reset, favTasks, filterTask, filterComplete} = taskSlice.actions
 export default taskSlice.reducer
