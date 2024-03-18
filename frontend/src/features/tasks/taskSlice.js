@@ -6,6 +6,7 @@ const initialState = {
   isLoading: false,
   isSuccess: false,
   isError: false,
+  filter: [],
   message: "",
 }
 
@@ -66,10 +67,16 @@ const taskSlice = createSlice({
       }
     },
     filterTask: (state, action) => {
-      state.tasks = state.tasks.filter((task) => {
-        return task.taskItem.includes(action.payload.filterValue);
-      });
-    }    
+
+      const control = [...state.filter];
+      state.tasks = control;
+      const filteredtask = state.tasks
+        .filter((task) => (
+          task.taskItem.toLowerCase().includes(action.payload)
+        ));
+
+      state.tasks = filteredtask;
+    }  
   },
   extraReducers: (builder) => {
     builder
@@ -80,6 +87,7 @@ const taskSlice = createSlice({
         state.isLoading = false
         state.isSuccess = true
         state.tasks = action.payload
+        state.filter = action.payload
       })
       .addCase(getTasks.rejected, (state, action) => {
         state.isLoading = false
