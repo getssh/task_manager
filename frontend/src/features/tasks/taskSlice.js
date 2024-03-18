@@ -80,11 +80,18 @@ const taskSlice = createSlice({
     filterComplete: (state, action) => {
       const control = [...state.filter];
       state.tasks = control
- 
-      const filteredtask = action.payload ? state.tasks
-        .filter((task) => (
-          task.taskCompleted === action.payload
-        )) : state.tasks
+
+      
+      const filteredtask = state.tasks
+      .filter((task) => {
+          const filterComplete = action.payload.isComplete ? task.taskCompleted === action.payload.isComplete :
+          task
+          const filterFavorite = action.payload.isFavorite ? task.favorite === action.payload.isFavorite :
+          task
+
+          const filterCombine = {filterComplete, filterFavorite}
+         return filterComplete && filterFavorite && task.taskItem.toString().includes(action.payload.taskText)
+        })
 
       state.tasks = filteredtask;
     },

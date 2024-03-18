@@ -30,6 +30,7 @@ const AllTasks = () => {
   }, [dispatch, user, navigate, isError, message])
 
   const [filterItem, setFilterItem] = useState({
+    taskText: '',
     isComplete: false,
     isFavorite: false,
   })
@@ -39,9 +40,18 @@ const AllTasks = () => {
   };
 
   const handleComplete = (e) => {
-    e.target.checked = !e.target.checked ? true : false;
-    dispatch(filterComplete(e.target.checked))
-  }
+    const { name, type, value, checked } = e.target;
+
+    const newValue = type === 'checkbox' ? checked : value;
+
+    const updatedFilterItem = {
+      ...filterItem,
+      [name]: newValue
+    };
+    setFilterItem(updatedFilterItem);
+    dispatch(filterComplete(updatedFilterItem));
+  };
+  
 
   if (isLoading) {
     return (
@@ -59,13 +69,14 @@ const AllTasks = () => {
         <Box>
           <input
             type="text"
-            name='itemText'
-            onInput={handleChange}
+            name='taskText'
+            value={filterItem.taskText}
+            onInput={handleComplete}
           />
           <input
             type='checkBox'
             name='isComplete'
-            checked={false}
+            checked={filterItem.isComplete}
             onChange={handleComplete}
           /> Completed
           <input
