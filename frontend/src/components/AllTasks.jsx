@@ -63,35 +63,45 @@ const AllTasks = () => {
   return (
     <>
       <Box flex={4}>
-        <Box>
-          <input
-            type="text"
-            name='taskText'
-            value={filterItem.taskText}
-            onInput={handleChange}
-          />
-          <input
-            type='checkBox'
-            name='isComplete'
-            checked={filterItem.isComplete}
-            onChange={handleChange}
-          /> Completed
-          <input
-            type='checkBox'
-            name='isFavorite'
-            checked={filterItem.isFavorite}
-            onChange={handleChange}
-          /> Favorited
-          <select
-            name="priorityFilter"
-            value={filterItem.priorityFilter}
-            onChange={handleChange}
-          >
-            <option value='all'>All priority</option>
-            <option value='low'>Low</option>
-            <option value='high'>High</option>
-            <option value='urgent'>Urgent</option>
-          </select>
+        <Box sx={{display: 'flex', justifyContent: 'center', backgroundColor: 'lavender',
+          width: '80%', marginLeft:'10%', borderRadius: 2,
+        }} p={3} mb={2}>
+          <form style={{width: '80%', marginLeft: '10%'}}>
+            <input
+              style={{width: '80%'}}
+              type="text"
+              name='taskText'
+              placeholder='Search...'
+              value={filterItem.taskText}
+              onInput={handleChange}
+            /><br/>
+            <div style={{display: 'flex', justifyContent: 'center', gap: '2rem',
+              padding: '1rem'
+            }}>
+              <input
+                type='checkBox'
+                name='isComplete'
+                checked={filterItem.isComplete}
+                onChange={handleChange}
+              /> Completed
+              <input
+                type='checkBox'
+                name='isFavorite'
+                checked={filterItem.isFavorite}
+                onChange={handleChange}
+              /> Favorited
+              <select
+                name="priorityFilter"
+                value={filterItem.priorityFilter}
+                onChange={handleChange}
+              >
+                <option value='all'>All priority</option>
+                <option value='low'>Low</option>
+                <option value='high'>High</option>
+                <option value='urgent'>Urgent</option>
+              </select>
+            </div>
+          </form>
         </Box>
         <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap:2}}>
         {tasks && tasks.length > 0 ? (
