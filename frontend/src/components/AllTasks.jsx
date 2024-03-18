@@ -2,7 +2,7 @@ import { Box } from '@mui/material'
 import { useEffect, useState } from 'react'
 import {useSelector, useDispatch} from 'react-redux'
 import {useNavigate} from 'react-router-dom'
-import {filterComplete, filterTask, getTasks, reset} from '../features/tasks/taskSlice'
+import {filterTask, getTasks, reset} from '../features/tasks/taskSlice'
 import {toast} from 'react-toastify'
 import Task from './Task'
 import { Cached } from '@mui/icons-material'
@@ -36,10 +36,6 @@ const AllTasks = () => {
   })
 
   const handleChange = (e) => {
-    dispatch(filterTask(e.target.value))
-  };
-
-  const handleComplete = (e) => {
     const { name, type, value, checked } = e.target;
 
     const newValue = type === 'checkbox' ? checked : value;
@@ -49,7 +45,7 @@ const AllTasks = () => {
       [name]: newValue
     };
     setFilterItem(updatedFilterItem);
-    dispatch(filterComplete(updatedFilterItem));
+    dispatch(filterTask(updatedFilterItem));
   };
   
 
@@ -71,13 +67,13 @@ const AllTasks = () => {
             type="text"
             name='taskText'
             value={filterItem.taskText}
-            onInput={handleComplete}
+            onInput={handleChange}
           />
           <input
             type='checkBox'
             name='isComplete'
             checked={filterItem.isComplete}
-            onChange={handleComplete}
+            onChange={handleChange}
           /> Completed
           <input
             type='checkBox'

@@ -69,17 +69,6 @@ const taskSlice = createSlice({
     filterTask: (state, action) => {
       const control = [...state.filter];
       state.tasks = control
- 
-      const filteredtask = state.tasks
-        .filter((task) => (
-          task.taskItem.toString().includes(action.payload)
-        ))
-
-      state.tasks = filteredtask;
-    },
-    filterComplete: (state, action) => {
-      const control = [...state.filter];
-      state.tasks = control
 
       
       const filteredtask = state.tasks
@@ -159,5 +148,5 @@ const taskSlice = createSlice({
   }
 })
 
-export const {reset, favTasks, filterTask, filterComplete} = taskSlice.actions
+export const {reset, favTasks, filterTask} = taskSlice.actions
 export default taskSlice.reducer
