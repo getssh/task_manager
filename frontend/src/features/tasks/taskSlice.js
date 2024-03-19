@@ -16,7 +16,11 @@ export const getTasks = createAsyncThunk('tasks/get', (_, thunkAPI) => {
 
     return taskHelper.getTasks(token)
   } catch (error) {
-    thunkAPI.rejectWithValue(error.toString())
+    const message = 
+    (error.response && error.response.data &&
+      error.response.data.message) || error.message || error.toString()
+    
+    return thunkAPI.rejectWithValue(message)
   }
 })
 
@@ -25,7 +29,11 @@ export const addTask = createAsyncThunk('tasks/create', async(taskData, thunkAPI
     const token = thunkAPI.getState().user.user.token
     return await taskHelper.addTask(taskData, token)
   } catch (error) {
-    return thunkAPI.rejectWithValue(error.toString())
+    const message = 
+    (error.response && error.response.data &&
+      error.response.data.message) || error.message || error.toString()
+    
+    return thunkAPI.rejectWithValue(message)
   }
 })
 
@@ -35,7 +43,11 @@ export const removeTask = createAsyncThunk('tasks/deleteTask', async (taskId, th
 
     return await taskHelper.removeTask(taskId, token)
   } catch (error) {
-    return thunkAPI.rejectWithValue(error.toString())
+    const message = 
+    (error.response && error.response.data &&
+      error.response.data.message) || error.message || error.toString()
+    
+    return thunkAPI.rejectWithValue(message)
   }
 })
 
@@ -45,7 +57,11 @@ export const updatedTask = createAsyncThunk('tasks/updateTask', async ({taskId, 
 
     return await taskHelper.updatedTask(taskId, taskData, token)
   } catch (error) {
-    return thunkAPI.rejectWithValue(error.toString())
+    const message = 
+    (error.response && error.response.data &&
+      error.response.data.message) || error.message || error.toString()
+    
+    return thunkAPI.rejectWithValue(message)
   }
 })
 

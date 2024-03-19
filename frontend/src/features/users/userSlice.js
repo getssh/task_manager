@@ -15,8 +15,11 @@ export const registerUser = createAsyncThunk('user/register', async(userData, th
   try {
     return await userHelper.registerUser(userData)
   } catch (error) {
-    console.log(error)
-    return thunkAPI.rejectWithValue(error.toString())
+    const message = 
+    (error.response && error.response.data &&
+      error.response.data.message) || error.message || error.toString()
+    
+    return thunkAPI.rejectWithValue(message)
   }
 })
 
@@ -24,8 +27,11 @@ export const signinUser = createAsyncThunk('user/signin', async(userData, thunkA
   try {
     return await userHelper.signinUser(userData)
   } catch (error) {
-    console.log(error)
-    return thunkAPI.rejectWithValue(error.toString())
+    const message = 
+    (error.response && error.response.data &&
+      error.response.data.message) || error.message || error.toString()
+    
+    return thunkAPI.rejectWithValue(message)
   }
 })
 
@@ -35,7 +41,11 @@ export const deleteUser = createAsyncThunk('user/delete', async(_, thunkAPI) => 
 
     return await userHelper.deleteUser(token)
   } catch (error) {
-    return thunkAPI.rejectWithValue(error.toString())
+    const message = 
+    (error.response && error.response.data &&
+      error.response.data.message) || error.message || error.toString()
+    
+    return thunkAPI.rejectWithValue(message)
   }
 })
 
