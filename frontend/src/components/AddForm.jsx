@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import {useSelector, useDispatch} from 'react-redux'
 import {addTask, getTasks} from '../features/tasks/taskSlice'
 import {useNavigate} from 'react-router-dom'
+import { toast } from 'react-toastify'
 
 const AddForm = () => {
   const dispatch = useDispatch()
@@ -31,7 +32,9 @@ const AddForm = () => {
     e.preventDefault()
 
     const taskData = {taskItem, priority}
-
+    if (!taskItem) {
+      toast.error('Status 400: Please fill all fields')
+    }
     dispatch(addTask(taskData))
     setFormData({
         taskItem: "",
