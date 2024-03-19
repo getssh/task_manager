@@ -15,10 +15,6 @@ const AllTasks = () => {
   const {user} = useSelector((state)=> state.user)
 
   useEffect(()=> {
-    if (isError) {
-      toast.error(message)
-    }
-
     if (!user) {
       navigate('/signin')
     }
@@ -115,7 +111,7 @@ const AllTasks = () => {
               ))
             ) : (
               <Box sx={{gridColumn: "1 / -1", display: 'flex', justifyContent:'center', alignItems: 'center', height: '50vh'}}>
-                <Typography variant='h5' sx={{textAlign: 'center', width: '100%'}}>No Tasks Created</Typography>
+                <Typography variant='h5' sx={{textAlign: 'center', width: '100%'}}>Tasks Not Found</Typography>
               </Box>
               )}
         </div>
