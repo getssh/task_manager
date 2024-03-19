@@ -1,4 +1,4 @@
-import { Box } from '@mui/material'
+import { Box, Input } from '@mui/material'
 import { useEffect, useState } from 'react'
 import {useSelector, useDispatch} from 'react-redux'
 import {useNavigate} from 'react-router-dom'
@@ -64,32 +64,35 @@ const AllTasks = () => {
     <>
       <Box flex={4}>
         <Box sx={{display: 'flex', justifyContent: 'center', backgroundColor: 'lavender',
-          width: '80%', marginLeft:'10%', borderRadius: 2,
+          width: '80%', marginLeft: {xs:'0%', sm:'10%'}, borderRadius: 2,
         }} p={3} mb={2}>
-          <form style={{width: '80%', marginLeft: '10%'}}>
-            <input
-              style={{width: '80%'}}
+          <Box component='form' sx={{width: {xs:'100%', sm: '80%'}, marginLeft: {xs:'10%', sm:'0%', md:'10%'}}}>
+            <Input
+              sx={{width: '80%', padding: '0 10px', backgroundColor: '#fff'}}
               type="text"
               name='taskText'
               placeholder='Search...'
               value={filterItem.taskText}
               onInput={handleChange}
             /><br/>
-            <div style={{display: 'flex', justifyContent: 'center', gap: '2rem',
-              padding: '1rem'
+            <Box sx={{display: 'flex', flexDirection: {xs: 'column', sm: 'column', md:'row'}, justifyContent: 'center', gap: '2rem',
+              padding: '1rem', marginRight: {xs:'0%', sm:'10%'}
             }}>
-              <input
-                type='checkBox'
-                name='isComplete'
-                checked={filterItem.isComplete}
-                onChange={handleChange}
-              /> Completed
-              <input
-                type='checkBox'
-                name='isFavorite'
-                checked={filterItem.isFavorite}
-                onChange={handleChange}
-              /> Favorited
+              <div>
+                <input
+                  type='checkBox'
+                  name='isComplete'
+                  checked={filterItem.isComplete}
+                  onChange={handleChange}
+                /> <lable>Completed</lable>
+                <input
+                  style={{marginLeft: 10}}
+                  type='checkBox'
+                  name='isFavorite'
+                  checked={filterItem.isFavorite}
+                  onChange={handleChange}
+                /> Favorited
+              </div>
               <select
                 name="priorityFilter"
                 value={filterItem.priorityFilter}
@@ -100,8 +103,8 @@ const AllTasks = () => {
                 <option value='high'>High</option>
                 <option value='urgent'>Urgent</option>
               </select>
-            </div>
-          </form>
+            </Box>
+          </Box>
         </Box>
         <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap:2}}>
         {tasks && tasks.length > 0 ? (
