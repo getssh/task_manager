@@ -1,4 +1,4 @@
-import { Box, List, ListItem, ListItemText } from '@mui/material'
+import { Box, List, ListItem, ListItemText, Typography } from '@mui/material'
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { getTasks } from '../features/tasks/taskSlice'
@@ -31,7 +31,11 @@ const TaskFilter = ({favFilter}) => {
           </List>
         ))
       ) : (
-        <div>No {favFilter ? 'Favorite' : 'Completed'} Tasks</div>
+        <Box 
+        sx={{gridColumn: "1 / -1", display: 'flex', justifyContent:'center', alignItems: 'center', height: '50vh'}}
+        >
+          <Typography variant='h6' sx={{textAlign: 'center', width: '100%'}}>No {favFilter ? 'Favorite' : 'Completed'} Tasks</Typography>
+        </Box>
       )}
     </Box>
   )

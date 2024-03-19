@@ -1,4 +1,4 @@
-import { Box, Input } from '@mui/material'
+import { Box, Input, Typography } from '@mui/material'
 import { useEffect, useState } from 'react'
 import {useSelector, useDispatch} from 'react-redux'
 import {useNavigate} from 'react-router-dom'
@@ -65,6 +65,7 @@ const AllTasks = () => {
       <Box flex={4}>
         <Box sx={{display: 'flex', justifyContent: 'center', backgroundColor: 'lavender',
           width: '80%', marginLeft: {xs:'0%', sm:'10%'}, borderRadius: 2,
+          boxShadow: '5px 5px 5px lightgrey'
         }} p={3} mb={2}>
           <Box component='form' sx={{width: {xs:'100%', sm: '80%'}, marginLeft: {xs:'10%', sm:'0%', md:'10%'}}}>
             <Input
@@ -106,14 +107,16 @@ const AllTasks = () => {
             </Box>
           </Box>
         </Box>
-        <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap:2}}>
+        <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap:7}}>
         {tasks && tasks.length > 0 ? (
 
             tasks.map((task) => (
                 <Task key={task._id} task={task}/>
               ))
             ) : (
-              <div>No Task</div>
+              <Box sx={{gridColumn: "1 / -1", display: 'flex', justifyContent:'center', alignItems: 'center', height: '50vh'}}>
+                <Typography variant='h5' sx={{textAlign: 'center', width: '100%'}}>No Tasks Created</Typography>
+              </Box>
               )}
         </div>
       </Box>
