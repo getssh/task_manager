@@ -44,7 +44,6 @@ const AllTasks = () => {
     setFilterItem(updatedFilterItem);
     dispatch(filterTask(updatedFilterItem));
   };
-  
 
   if (isLoading) {
     return (

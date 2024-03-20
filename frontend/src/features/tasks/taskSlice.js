@@ -157,6 +157,7 @@ const taskSlice = createSlice({
         const updatedTaskIndex = state.tasks.findIndex(task => task._id === action.payload._id);
         if (updatedTaskIndex !== -1) {
           state.tasks[updatedTaskIndex] = action.payload;
+          state.filter[updatedTaskIndex] = action.payload;
         }
       })
       .addCase(updatedTask.rejected, (state, action) => {
