@@ -71,7 +71,7 @@ const AddForm = () => {
           <FormControl variant="standard">
             <Input
               type='text'
-              placeholder='Task Info'
+              placeholder='Task Text'
               name='taskItem'
               value={taskItem}
               onChange={handleChange}
@@ -83,16 +83,18 @@ const AddForm = () => {
             />
           </FormControl>
           <FormControl fullWidth>
-            <Select
+            <select
               name="priority"
               label="Priority"
               placeholder='Priority'
               onChange={handleChange}
+              style={{backgroundColor: 'transparent', padding: 5}}
             >
-              <MenuItem component="option" value="low">Low</MenuItem>
-              <MenuItem component="option" value="high">High</MenuItem>
-              <MenuItem component="option" value="urgent">Urgent</MenuItem>
-            </Select>
+              <option component="option" value="">Priority</option>
+              <option component="option" value="low">Low</option>
+              <option component="option" value="high">High</option>
+              <option component="option" value="urgent">Urgent</option>
+            </select>
           </FormControl>
           <FormControl>
             <Button variant="contained" type='submit'>Add Task</Button>
