@@ -60,10 +60,10 @@ const AllTasks = () => {
     <>
       <Box flex={4}>
         <Box sx={{display: 'flex', justifyContent: 'center', backgroundColor: 'lavender',
-          width: {xs: '90%', sm: '80%'}, marginLeft: {xs:'0%', sm:'10%'}, borderRadius: 2,
+          width: {xs: '`100%', sm: '80%'}, marginLeft: {xs:'0%', sm:'5%', md: '10%'}, borderRadius: 2,
           boxShadow: '5px 5px 5px lightgrey'
         }} p={3} mb={2}>
-          <Box component='form' sx={{width: {xs:'100%', sm: '80%'}, marginLeft: {xs:'10%', sm:'0%', md:'10%'}}}>
+          <Box component='form' sx={{width: {xs:'100%', sm: '80%'}, marginLeft: {xs:'5%', sm:'0%', md:'10%'}}}>
             <Input
               sx={{width: '80%', padding: '0 10px', backgroundColor: '#fff'}}
               type="text"
