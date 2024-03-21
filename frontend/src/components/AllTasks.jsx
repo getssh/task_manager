@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react'
 import {useSelector, useDispatch} from 'react-redux'
 import {useNavigate} from 'react-router-dom'
 import {filterTask, getTasks, reset} from '../features/tasks/taskSlice'
-import {toast} from 'react-toastify'
 import Task from './Task'
 import { Cached } from '@mui/icons-material'
 

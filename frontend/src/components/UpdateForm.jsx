@@ -1,9 +1,8 @@
 import { Edit, TaskSharp } from '@mui/icons-material'
 import { Box, Button, FormControl, IconButton, Input, InputAdornment, MenuItem, Modal, Select, Typography } from '@mui/material'
 import { useEffect, useState } from 'react'
-import {useSelector, useDispatch} from 'react-redux'
+import {useDispatch} from 'react-redux'
 import {updatedTask} from '../features/tasks/taskSlice'
-import { getTask } from '../features/tasks/oneTaskSlice'
 
 const UpdateForm = ({ taskToUpdate }) => {
   const dispatch = useDispatch()
@@ -12,10 +11,6 @@ const UpdateForm = ({ taskToUpdate }) => {
     taskItem: "",
     priority: "",
   })
-
-  // useEffect(() => {
-  //   dispatch(getTask(taskId))
-  // }, [dispatch, taskId])
 
   useEffect(() => {
     if (taskToUpdate) {
