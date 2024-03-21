@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = '/api/tasks/'
+const API_URL = 'https://taskmanager-api-liart.vercel.app/api/tasks/'
 
 const getTasks = async(token) => {
   const response = await axios.get(API_URL, {
