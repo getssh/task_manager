@@ -55,7 +55,10 @@ const Signup = () => {
 
     if (password !== confirmPassword) {
       toast.error("Password do not match")
-    } else {
+    } else if (password.length < 8) {
+      toast.error("Password should be atleast 8 charachter")
+    }
+    else  {
       const userInfo = {name, email, password}
 
       dispatch(registerUser(userInfo))
