@@ -10,12 +10,9 @@ const app = express()
 app.use(express.json())
 app.use(express.urlencoded({extended: false}))
 
-app.get('/api/tasks', (req, res) => {
-  res.json({message: 'Deploy test'})
-})
-// app.use('/api/tasks', require('./routes/taskRoute'))
-// app.use('/api/users', require('./routes/userRoute'))
-// app.use(errorHandler)
+app.use('/api/tasks', require('./routes/taskRoute'))
+app.use('/api/users', require('./routes/userRoute'))
+app.use(errorHandler)
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`)
