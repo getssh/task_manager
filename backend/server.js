@@ -1,5 +1,6 @@
 const express = require('express')
 const dotenv = require('dotenv').config()
+const cors = require('cors');
 const port = process.env.PORT || 5000
 const mongoDB = require('./config/db')
 const errorHandler = require('./middleWare/errorHandler')
