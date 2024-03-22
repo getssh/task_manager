@@ -113,6 +113,7 @@ const taskSlice = createSlice({
         state.isLoading = false
         state.isSuccess = true
         state.tasks = action.payload
+        state.filter = action.payload
       })
       .addCase(getTasks.rejected, (state, action) => {
         state.isLoading = false
