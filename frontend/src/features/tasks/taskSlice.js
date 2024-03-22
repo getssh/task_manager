@@ -98,7 +98,7 @@ const taskSlice = createSlice({
             task.priority === action.payload.priorityFilter : task
 
           return filterComplete && filterFavorite && filterPriority &&
-          task.taskItem.toString().includes(action.payload.taskText)
+          task.taskItem.toLowerCase().includes(action.payload.taskText)
         })
 
       state.tasks = filteredtask;
