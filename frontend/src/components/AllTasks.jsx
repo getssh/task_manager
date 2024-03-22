@@ -47,7 +47,7 @@ const AllTasks = () => {
   if (isLoading) {
     return (
       <Box flex={4} sx={{
-        position: 'fixed', top: '50%', left: '50%',
+        position: 'fixed', top: '50%', left: {xs: '40%', sm: '60%'},
         textAlign:'center', justifyContent:'center'}}>
         <Cached sx={{width: '5rem', height: '5rem'}}/>
       </Box>
