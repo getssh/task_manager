@@ -142,6 +142,9 @@ const taskSlice = createSlice({
         state.tasks = state.tasks.filter((task) => {
           return task._id !== action.payload.id
         })
+        state.filter = state.filter.filter((task) => {
+          return task._id !== action.payload.id
+        })
       })
       .addCase(removeTask.rejected, (state, action) => {
         state.isLoading = false
@@ -155,9 +158,12 @@ const taskSlice = createSlice({
         state.isLoading = false
         state.isSuccess = true
         const updatedTaskIndex = state.tasks.findIndex(task => task._id === action.payload._id);
+        const updatedFilterIndex = state.filter.findIndex(task => task._id === action.payload._id);
         if (updatedTaskIndex !== -1) {
           state.tasks[updatedTaskIndex] = action.payload;
-          state.filter[updatedTaskIndex] = action.payload;
+        }
+        if (updatedFilterIndex !== -1) {
+          state.filter[updatedFilterIndex] = action.payload;
         }
       })
       .addCase(updatedTask.rejected, (state, action) => {
