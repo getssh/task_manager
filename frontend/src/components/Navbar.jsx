@@ -10,6 +10,10 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   const { user } = useSelector((state) => state.user);
+  const tasks = useSelector((state) => state.tasks.filter)
+
+  const filterdTasks = (favFilter) => tasks && tasks.length && favFilter ? tasks.filter(task => task.favorite) :
+  tasks && tasks.length && !favFilter ? tasks.filter(task => task.taskCompleted) : []
 
   const handleSignout = () => {
     dispatch(logout());
@@ -43,13 +47,13 @@ const Navbar = () => {
           <>          
             <Box sx={{ display: { xs: 'none', sm: 'flex' }, alignItems: 'center' }}>
               <Stack spacing={4} direction="row" mr={5} sx={{ color: 'action.action' }}>
-                <Badge color="secondary" badgeContent={10} max={99}>
+                <Badge color="secondary" badgeContent={tasks.length} max={99}>
                   <Assignment />
                 </Badge>
-                <Badge color="secondary" badgeContent={10} max={99}>
+                <Badge color="secondary" badgeContent={filterdTasks(false).length} max={99}>
                   <TaskAlt />
                 </Badge>
-                <Badge color="secondary" badgeContent={10} max={99}>
+                <Badge color="secondary" badgeContent={filterdTasks(true).length} max={99}>
                   <Favorite />
                 </Badge>
               </Stack>
