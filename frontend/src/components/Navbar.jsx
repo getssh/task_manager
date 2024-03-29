@@ -45,18 +45,20 @@ const Navbar = () => {
 
         {user ? (
           <>          
+            <Stack spacing={4} direction="row" mr={5} sx={{ color: 'action.action',
+              display: {xs: 'block', sm: 'none', md: 'block'}
+            }}>
+              <Badge color="secondary" badgeContent={tasks.length} max={99}>
+                <Assignment />
+              </Badge>
+              <Badge color="secondary" badgeContent={filterdTasks(false).length} max={99}>
+                <TaskAlt />
+              </Badge>
+              <Badge color="secondary" badgeContent={filterdTasks(true).length} max={99}>
+                <Favorite />
+              </Badge>
+            </Stack>
             <Box sx={{ display: { xs: 'none', sm: 'flex' }, alignItems: 'center' }}>
-              <Stack spacing={4} direction="row" mr={5} sx={{ color: 'action.action' }}>
-                <Badge color="secondary" badgeContent={tasks.length} max={99}>
-                  <Assignment />
-                </Badge>
-                <Badge color="secondary" badgeContent={filterdTasks(false).length} max={99}>
-                  <TaskAlt />
-                </Badge>
-                <Badge color="secondary" badgeContent={filterdTasks(true).length} max={99}>
-                  <Favorite />
-                </Badge>
-              </Stack>
               <Button component={Link} to="/" color="inherit" exact>
                 Tasks
               </Button>
