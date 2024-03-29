@@ -1,5 +1,5 @@
-import { AppBar, Avatar, Box, Button, IconButton, Menu, MenuItem, Toolbar, Typography } from '@mui/material';
-import { Menu as Menuiconn, TaskAlt } from '@mui/icons-material';
+import { AppBar, Avatar, Badge, Box, Button, IconButton, Menu, MenuItem, Stack, Toolbar, Typography } from '@mui/material';
+import { Assignment, Favorite, Menu as Menuiconn, TaskAlt } from '@mui/icons-material';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { logout, reset } from '../features/users/userSlice';
@@ -42,6 +42,17 @@ const Navbar = () => {
         {user ? (
           <>          
             <Box sx={{ display: { xs: 'none', sm: 'flex' }, alignItems: 'center' }}>
+              <Stack spacing={4} direction="row" mr={5} sx={{ color: 'action.action' }}>
+                <Badge color="secondary" badgeContent={10} max={99}>
+                  <Assignment />
+                </Badge>
+                <Badge color="secondary" badgeContent={10} max={99}>
+                  <TaskAlt />
+                </Badge>
+                <Badge color="secondary" badgeContent={10} max={99}>
+                  <Favorite />
+                </Badge>
+              </Stack>
               <Button component={Link} to="/" color="inherit" exact>
                 Tasks
               </Button>
