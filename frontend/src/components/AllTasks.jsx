@@ -28,6 +28,7 @@ const AllTasks = () => {
     taskText: '',
     isComplete: false,
     isFavorite: false,
+    isToday: false,
     priorityFilter: '',
   })
 
@@ -74,6 +75,12 @@ const AllTasks = () => {
               padding: '1rem', marginRight: {xs:'0%', sm:'10%'}
             }}>
               <div>
+                <input
+                  type='checkBox'
+                  name='isComplete'
+                  checked={filterItem.isToday}
+                  onChange={handleChange}
+                /> <lable>Today</lable>
                 <input
                   type='checkBox'
                   name='isComplete'
