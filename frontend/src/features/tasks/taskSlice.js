@@ -97,7 +97,11 @@ const taskSlice = createSlice({
           const filterPriority = ['low', 'high', 'urgent'].includes(action.payload.priorityFilter) ? 
             task.priority === action.payload.priorityFilter : task
 
-          return filterComplete && filterFavorite && filterPriority &&
+          const today = new Date().toISOString().split('T')[0];
+
+          const taskCreated = task.createdAt.split('T')[0];
+          const filterByDate = taskCreated === today;
+          return filterComplete && filterFavorite && filterPriority && filterByDate &&
           task.taskItem.toLowerCase().includes(action.payload.taskText.toLowerCase())
         })
 
