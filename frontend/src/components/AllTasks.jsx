@@ -77,11 +77,12 @@ const AllTasks = () => {
               <div>
                 <input
                   type='checkBox'
-                  name='isComplete'
+                  name='isToday'
                   checked={filterItem.isToday}
                   onChange={handleChange}
                 /> <lable>Today</lable>
                 <input
+                  style={{marginLeft: 10}}
                   type='checkBox'
                   name='isComplete'
                   checked={filterItem.isComplete}
